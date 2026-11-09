@@ -687,7 +687,7 @@ function pegScore(pile,c,count){
 function log(s){G.log.unshift(s);G.log=G.log.slice(0,4)}
 function addScore(p,n,why){if(G.phase=='over'||!n)return;const o=G.score[p];G.score[p]=Math.min(121,o+n);G.pegs[p]=[o,G.score[p]];log(`${NM[p]} +${n}: ${why}`);snd('score',n);G.rx2={p,n};
   if(G.score[p]>=121){G.phase='over';G.winner=p;say(1,p?'Good game!':'Well played!');recordGame(p);snd(p?'lose':'win')}}
-function newGame(){if($('home'))$('home').hidden=true;G={score:[0,0],pegs:[[0,0],[0,0]],st:{cnt:[0,0],best:[0,0]},dealer:Math.random()<.5?0:1,log:[]};setupBattle();deal();if(RUN&&RUN.sp){RUN.sp=false;showSplash()}}
+function newGame(){if($('home'))$('home').hidden=true;CFK=FK=null;G={score:[0,0],pegs:[[0,0],[0,0]],st:{cnt:[0,0],best:[0,0]},dealer:Math.random()<.5?0:1,log:[]};setupBattle();deal();if(RUN&&RUN.sp){RUN.sp=false;showSplash()}}
 function deal(){
   const d=shuffle([].concat(...[0,1,2,3].map(s=>LB.slice(1).map((_,i)=>({r:i+1,s})))));
   G.hands=[d.splice(0,6),d.splice(0,6)];G.deck=d;G.crib=[];G.sel=[];G.phase='discard';G.shown=null;G.starter=null;$('table').classList.remove('lost');
@@ -845,15 +845,15 @@ function openColl(tab){tab=tab||'back';const el=$('coll');S.own=S.own||[];
 function equip(t,id){if(t=='table'){S.th=id;$('th').value=id;if(!RUN)document.documentElement.dataset.th=id}else{S.eq=S.eq||{};S.eq[t]=id}saveS();applyColl()}
 function openStats(){const el=$('stats'),n=(S.w||0)+(S.l||0),r=(a,b,c)=>`<div class="vr">${IC(a)}<span>${b}</span><b>${c}</b></div>`;
   el.innerHTML=`<div class="mtop"><button class="ib" id="sbk" aria-label="Back"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5 8 12l7 7"/></svg></button><div class="ribbon">${IC('trophy')}Stats</div><span style="width:44px"></span></div>
-  <div class="stc">`+r('trophy','Games played',n)+r('baron','Wins',S.w||0)+r('peg','Win rate',n?Math.round((S.w||0)/n*100)+'%':'–')+r('starf','Best skunk',S.bm?'+'+S.bm:'–')+r('fever','Win streak',(S.st||0)+' (best '+Math.max(S.bst||0,S.st||0)+')')+r('big','Best hand',S.bh||0)+r('quick','Skunks given / taken',(S.sk||0)+' / '+(S.sd||0))+r('rogue','Adventures completed',S.runsWon||0)+r('battle','Most battles in a run',S.bestRun||0)+r('gem','Gems',S.gems||0)+`</div>`;
+  <div class="stc">`+r('trophy','Games played',n)+r('baron','Wins',S.w||0)+r('peg','Win rate',n?Math.round((S.w||0)/n*100)+'%':'–')+r('starf','Biggest win',S.bm?'+'+S.bm:'–')+r('fever','Win streak',(S.st||0)+' (best '+Math.max(S.bst||0,S.st||0)+')')+r('big','Best hand',S.bh||0)+r('quick','Skunks given / taken',(S.sk||0)+' / '+(S.sd||0))+r('rogue','Adventures completed',S.runsWon||0)+r('battle','Most battles in a run',S.bestRun||0)+r('gem','Gems',S.gems||0)+`</div>`;
   el.hidden=false;$('sbk').onclick=()=>{el.hidden=true}}
 function titleScreen(){$('ov').hidden=true;$('map').hidden=true;$('coll').hidden=true;const h=$('home');
   h.innerHTML=`<div class="hbg">${PXM()?sceneHTML('valley'):RUS()?SCN.valley:SCN.day}</div><div class="hin"><div class="htop"><button class="ib" id="t7" aria-label="Stats">${IC('trophy')}</button><span class="gemc">${IC('gem')}${S.gems||0}</span></div><div class="hlogo">${PXM()?PXLOGO:RUS()?MS.wlogo:MS.logo}</div><div class="ribbon hrib">First to 121 wins</div>
   <div class="hmid"><div class="hbtns"><button class="act big" id="t1">${IC('play')}Play</button>
-  <button class="pill" id="t2"><span>${IC('rogue')}</span>Adventure</button><button class="pill" id="t5"><span>${IC('coll')}</span>Collection</button><button class="pill" id="t3"><span>${IC('friend')}</span>Play a friend</button><button class="pill" id="t4"><span>${IC('book')}</span>How to play</button><button class="pill" id="t6"><span>${IC('gearic')}</span>Settings</button></div></div></div>`;
+  <button class="pill" id="t2"><span>${IC('rogue')}</span>${RUN?'Continue adventure':'Adventure'}</button><button class="pill" id="t5"><span>${IC('coll')}</span>Collection</button><button class="pill" id="t3"><span>${IC('friend')}</span>Play a friend</button><button class="pill" id="t4"><span>${IC('book')}</span>How to play</button><button class="pill" id="t6"><span>${IC('gearic')}</span>Settings</button></div></div></div>`;
   h.hidden=false;
-  $('t1').onclick=()=>{h.hidden=true;if(MP)mpStop();else if(RUN){RUN=null;newGame()}else render()};
-  $('t2').onclick=()=>{h.hidden=true;$('rn').click()};
+  $('t1').onclick=()=>{if(MP){h.hidden=true;mpStop()}else if(RUN){$('ovb').innerHTML='<h2>Leave your adventure?</h2><p>Starting a quick game ends your current run.</p><button class="act" id="oc">Start a quick game</button><button class="act cream" id="okr">Keep my run</button>';$('ov').hidden=false;$('okr').onclick=()=>{$('ov').hidden=true};$('oc').onclick=()=>{$('ov').hidden=true;h.hidden=true;S.bestRun=Math.max(S.bestRun||0,RUN.f);saveS();RUN=null;newGame()}}else{h.hidden=true;render()}};
+  $('t2').onclick=()=>{h.hidden=true;if(RUN&&!MP){if(!RUN.at||RUN.cleared)showMap();else render()}else $('rn').click()};
   $('t3').onclick=mpMenu;$('t5').onclick=()=>openColl();$('t7').onclick=openStats;$('t6').onclick=()=>{$('shs').hidden=false};
   $('t4').onclick=()=>{$('tut').hidden=false;S.seen=1;saveS()}}
 const EMO=['anchor','die','five','gear','baron','coin','flag','peek','octo'];
@@ -1028,7 +1028,7 @@ const OPP=[
 {n:'Lady Luck',lv:'normal',th:'burgundy',av:2,luck:.3,ab:'30% chance of a free point on every play.'},
 {n:'Iron Bot',lv:'hard',th:'midnight',av:3,hand:1,ab:'Counts +1 on every hand.'},
 {n:'The Cribbage King',lv:'hard',th:'noir',av:4,head:8,crib:2,ab:'Starts 8 ahead and adds +2 whenever he counts his crib.'},
-{n:'Penny Pickpocket',lv:'easy',th:'sunset',av:5,steal:1,ab:'Pockets 1 point whenever you count 4 or more.'},
+{n:'Penny Pickpocket',lv:'easy',th:'sunset',av:5,steal:1,ab:'Pockets 1 point and 1 HP whenever you count 4 or more.'},
 {n:'Captain Flint',lv:'normal',th:'forest',av:6,broad:2,ab:'Broadside: +2 when he pegs a pair or run.'},
 {n:'Madame Hex',lv:'hard',th:'burgundy',av:7,luck:.2,hand:1,ab:'20% free point per play, +1 per hand.'},
 {n:'The Kraken',lv:'hard',th:'midnight',av:8,head:6,hand:2,ab:'Boss. Starts 6 ahead, +2 on every hand.'}];
@@ -1068,7 +1068,7 @@ function setupBattle(){const o=RUN&&OPP[RUN.lvl];setScene(sceneKey());document.d
   else{$('lv').value=S.lv||'normal';document.documentElement.dataset.th=S.th||'classic'}}
 function msg(h,p){$('ovb').innerHTML=`<h2>${h}</h2><p>${p}</p><button class="act" id="oc">OK</button>`;$('ov').hidden=false;$('oc').onclick=()=>{$('ov').hidden=true};if($('ohm'))$('ohm').onclick=titleScreen}
 const OPT=(attrs,icon,title,sub,tone,tag)=>`<button class="opt ${tone||''}" ${attrs}><span class="oi">${IC(icon)}</span><span class="ot"><b>${title}</b>${sub?`<small>${sub}</small>`:''}</span>${tag?`<span class="tag">${tag}</span>`:'<span class="chev">\u203a</span>'}</button>`;
-function offerRelic(g,ttl,sub){const c=shuffle(RL.filter(r=>!has(r.id))).slice(0,3);if(RUN.f<=2&&!has('mentor')&&c.length&&!c.some(r=>r.id=='mentor'))c[0]=RL.find(r=>r.id=='mentor');
+function offerRelic(g,ttl,sub){const c=shuffle(RL.filter(r=>!has(r.id))).slice(0,3);if(RUN.f<=2&&!has('mentor')&&c.length&&!c.some(r=>r.id=='mentor'))c[0]=RL.find(r=>r.id=='mentor');if(!c.length)return showMap();
   $('ovb').innerHTML=`<div class="hero">${IC('sparkle','hi')}<h2>${ttl||'Choose a relic'}</h2><p>${sub||'Relics last for the whole run.'}</p></div>`+c.map(r=>OPT(`data-r="${r.id}"`,r.id,r.n,r.d,'t-rel')).join('');
   $('ov').hidden=false;
   $('ovb').querySelectorAll('button').forEach(b=>b.onclick=()=>{pick(b.dataset.r);$('ov').hidden=true;showMap()})}
@@ -1177,7 +1177,7 @@ function mkView(){const g=G,sw=a=>[a[1],a[0]],f=x=>x==null?x:1-x,hide=a=>a&&a.ma
     pile:g.pile||[],count:g.count||0,starter:g.starter,last:f(g.last),winner:f(g.winner),log:g.log.map(mkNm),
     bub:g.bub&&{p:1-g.bub.p,t:mkNm(g.bub.t)},fx:g.fx,rx2:g.rx2&&{p:1-g.rx2.p,n:g.rx2.n},st:g.st&&{cnt:sw(g.st.cnt),best:sw(g.st.best)},dd0:g.dd1,dd1:g.dd0,rdy:g.rdy&&sw(g.rdy),
     shown:w&&{cards:w.cards,res:w.res,who:f(w.who),label:(w.who==1?'Your':"Host's")+(g.showI==2?' crib':' hand')}}}
-function applyView(v){if(v.phase!='over')$('table').classList.remove('lost');const o=G&&G.hands?G.hands[0].length:-1,s=G&&G.sel;MP.last=Date.now();G=v;G.sel=s&&o==v.hands[0].length?s:[];G.tip=null;G.hintC=null;G.swapped=true;
+function applyView(v){if(v.phase!='over'){$('table').classList.remove('lost');CFK=FK=null}const o=G&&G.hands?G.hands[0].length:-1,s=G&&G.sel;MP.last=Date.now();G=v;G.sel=s&&o==v.hands[0].length?s:[];G.tip=null;G.hintC=null;G.swapped=true;
   if(v.bub){clearTimeout(BT);BT=setTimeout(()=>{G.bub=null;drawBoard()},2600)}render()}
 function bcast(){if(!MP||!MP.host||!MP.seated||!G.hands)return;MP.rm.emit('crib',{k:'st',v:mkView()}).catch(()=>{})}
 function act(c){if(MP&&!MP.host)MP.rm.emit('crib',{k:'act',t:'play',c:{r:c.r,s:c.s}}).catch(()=>{});else play(0,c)}
@@ -1204,7 +1204,7 @@ async function mpGo(host,code){
   let room=null;try{room=window.claude&&await claude.use('room')}catch(e){}
   if(!room)return msg('Not available','Online play only works on the published claude.ai page, for signed-in people with access.');
   let rm;try{rm=await room.join('crib-'+code)}catch(e){return msg('Could not join',(e&&e.message)||'Try again.')}
-  RUN=null;MP={host,rm,code,opp:host?'Guest':'Host',seated:false};NM[1]=MP.opp;
+  RUN=null;MP={host,rm,code,opp:host?'Guest':'Host',seated:false};setupBattle();
   rm.on('crib',m=>{if(m.isMe||!MP||MP.rm!==rm)return;const d=m.data||{};
     if(MP.host){if(d.k=='hi'){MP.guest=m.peer;if(!MP.seated){MP.seated=true;$('ov').hidden=true;newGame()}else bcast()}else if(d.k=='act'&&m.peer==MP.guest)hostAct(d)}
     else if(d.k=='st'){MP.got=true;$('ov').hidden=true;applyView(d.v)}});
@@ -1214,7 +1214,7 @@ async function mpGo(host,code){
   $('oc').onclick=mpStop;$('ov').hidden=false}
 let CFK;
 function confetti(){if(RM())return;for(let i=0;i<48;i++){const e=document.createElement('i');e.className='cf';e.style.cssText=`left:${Math.random()*100}vw;background:hsl(${Math.random()*360} 80% 60%);animation-delay:${Math.random()*.6}s;animation-duration:${1.6+Math.random()*1.4}s`;document.body.appendChild(e);setTimeout(()=>e.remove(),3600)}}
-function summary(){if(G.phase!='over'||G.adv||!$('ov').hidden)return;const w=G.winner,l=G.score[1-w],
+function summary(){if(G.phase!='over'||G.adv||!$('ov').hidden||!$('home').hidden)return;const w=G.winner,l=G.score[1-w],
   sk=w==0?(l<61?'Double skunk!':l<91?'Skunk!':''):(G.score[0]<61?'You were double skunked.':G.score[0]<91?'You were skunked.':'');
   const s=G.st||{cnt:[0,0],best:[0,0]},row=(a,b,c)=>`<tr><td>${a}</td><td><b>${b}</b></td><td><b>${c}</b></td></tr>`;
   $('ovb').innerHTML=`<div class="vic ${w==0?'w':'l'}"><div class="ribbon vrib">${w==0?'You win!':NM[1]+' wins.'}</div><div class="vcrown">${IC(w==0?'baron':'cloud')}</div><div class="vcard">${sk?'<h3>'+sk+'</h3>':''}`+vrow('starf','Final score',G.score[0]+' – '+G.score[1])+vrow('quick','Counted',s.cnt[0]+' – '+s.cnt[1])+vrow('peg','Pegging and bonuses',(G.score[0]-s.cnt[0])+' – '+(G.score[1]-s.cnt[1]))+vrow('big','Best hand',s.best[0]+' – '+s.best[1])+(G.gem?vrow('gem','Rewards','+'+G.gem+' gems'):'')+`</div></div><button class="act" id="oc">${RUN?'OK':'Continue'}</button>${RUN||MP?'':'<button class="act cream" id="ohm">Home</button>'}`;
