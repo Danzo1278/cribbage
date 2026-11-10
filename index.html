@@ -13,7 +13,7 @@
 
 <style>
 @font-face{font-family:CribPixel;src:url(data:font/ttf;base64,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IRWWASz+cGQBLGT+DAH0/gxkASwBkGRkZGRkZGRkZGRkZGRkZGQABwAyAAABwgK8AAMABwALAA8AEwAXABsAABM1MxUFNTMVBzUhFQc1MxUHNTMVBzUzFQc1MxX6yP7UZMgBLMhkZGRkZGRkAlhkZGRkZGRkZGRkZGRkZGRkZGRkZAALADIAAAImArwAAwAHAAsADwATABcAGwAfACMAJwArAAATNTMVBzUzFQc1IRUFNTMVITUzFQU1MxUhNTMVBTUzFSE1MxUFNTMVITUzFTJkZGRkAZD+cGQBLGT+DGQBLGT+DGQBLGT+DGQBLGQCWGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGQAAAYAMgAAAV4CvAADAAcACwAPABMAFwAAEzUzFQc1MxUHNTMVBzUzFQc1MxUHNSEVlmTIyGRkZGRkZMgBLAJYZGTIZGRkZGRkZGRkZGRkZGQACwAyAAABwgK8AAMABwALAA8AEwAXABsAHwAjACcAKwAAEzUzFQc1MxUHNTMVMzUzFQU1MxUzNTMVBTUzFQc1MxUzNTMVBTUzFTM1MxUyZGRkZGTIZP5wZGRk/tTIyGRkZP7UZMhkAlhkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkAAAHADIAAAFeArwAAwAHAAsADwATABcAGwAAEzUzFQc1MxUHNTMVBzUzFQc1MxUHNTMVBzUhFTLIZGRkZGRkZGRkZMgBLAJYZGRkZGRkZGRkZGRkZGRkZGRkZGQAAA4AMgAAAiYB9AADAAcACwAPABMAFwAbAB8AIwAnACsALwAzADcAABM1MxUzNTMVBTUzFTM1MxUzNTMVBTUzFTM1MxUzNTMVBTUzFTM1MxUzNTMVBTUzFTM1MxUzNTMVMshkZP5wZGRkZGT+DGRkZGRk/gxkZGRkZP4MZGRkZGQBkGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkAAkAMgAAAiYB9AADAAcACwAPABMAFwAbAB8AIwAAEzUhFQU1MxUhNTMVBTUzFSE1MxUFNTMVITUzFQU1MxUhNTMVMgGQ/nBkASxk/gxkASxk/gxkASxk/gxkASxkAZBkZGRkZGRkZGRkZGRkZGRkZGRkZGRkAAAIADIAAAImAfQAAwAHAAsADwATABcAGwAfAAATNSEVBTUzFSE1MxUFNTMV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LAJYZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZAAADAAyAAACJgK8AAMABwALAA8AEwAXABsAHwAjACcAKwAvAAATNSEVBTUzFSE1MxUFNTMVMzUhFQU1MxUzNTMVMzUzFQU1MxUzNSEVBTUzFRU1IRWWASz+cGQBLGT+DGRkASz+DGRkZGRk/gxkZAEs/gxkASwCWGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZAAAAwAy/5wA+gDIAAMABwALAAA3NTMVBzUzFQc1MxWWZGRkyGRkZGRkZGRkZGQAAAQAMv+cAPoB9AADAAcACwAPAAATNTMVAzUzFQc1MxUHNTMVlmRkZGRkyGQBkGRk/tRkZGRkZGRkZAAAAAAABAA2AAEAAAAAAAEACQAAAAEAAAAAAAIABwAJAAMAAQQJAAEAEgAQAAMAAQQJAAIADgAiQ3JpYlBpeGVsUmVndWxhcgBDAHIAaQBiAFAAaQB4AGUAbABSAGUAZwB1AGwAYQByAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABrAAABAgEDAQQBBQEGAQcBCAEJAQoBCwEMAQ0BDgEPARABEQESARMBFAEVARYBFwEYARkBGgEbARwBHQEeAR8BIAEhASIBIwEkASUBJgEnASgBKQEqASsBLAEtAS4BLwEwATEBMgEzATQBNQE2ATcBOAE5AToBOwE8AT0BPgE/AUABQQFCAUMBRAFFAUYBRwFIAUkBSgFLAUwBTQFOAU8BUAFRAVIBUwFUAVUBVgFXAVgBWQFaAVsBXAFdAV4BXwFgAWEBYgFjAWQBZQFmAWcBaAFpAWoBawV1MDA0MQV1MDA0MgV1MDA0MwV1MDA0NAV1MDA0NQV1MDA0NgV1MDA0NwV1MDA0OAV1MDA0OQV1MDA0QQV1MDA0QgV1MDA0QwV1MDA0RAV1MDA0RQV1MDA0RgV1MDA1MAV1MDA1MQV1MDA1MgV1MDA1MwV1MDA1NAV1MDA1NQV1MDA1NgV1MDA1NwV1MDA1OAV1MDA1OQV1MDA1QQV1MDA2MQV1MDA2MgV1MDA2MwV1MDA2NAV1MDA2NQV1MDA2NgV1MDA2OAV1MDA2OQV1MDA2QgV1MDA2QwV1MDA2RAV1MDA2RQV1MDA2RgV1MDA3MgV1MDA3MwV1MDA3NAV1MDA3NQV1MDA3NgV1MDA3NwV1MDA3OAV1MDA3QQV1MDA2NwV1MDA2QQV1MDA3MAV1MDA3MQV1MDA3OQV1MDAzMAV1MDAzMQV1MDAzMgV1MDAzMwV1MDAzNAV1MDAzNQV1MDAzNgV1MDAzNwV1MDAzOAV1MDAzOQV1MDAyMAV1MDAyRQV1MDAzQQV1MDAyMQV1MDAyNwV1MjAxOQV1MDAyMgV1MDAyRAV1MjAxMwV1MjAxNAV1MjIxMgV1MDAyQgV1MDAzRgV1MDAyRgV1MDAyOAV1MDAyOQV1MDA1QgV1MDA1RAV1MDAyNQV1MDAyMwV1MDAyNgV1MDAyQQV1MDAzRAV1MDAzQwV1MDAzRQV1MDA1RgV1MDBCNwV1MjAyNgV1MDBENwV1MjAzQQV1MjAzOQV1MjVCOAV1MjE5MgV1MjE5MwV1MjE5MQV1MjcxMwV1MjY2MAV1MjY2NQV1MjY2NgV1MjY2MwV1MDAyNAV1MDA0MAV1MDAyQwV1MDAzQg==) format("truetype");font-display:block}
-:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+:root{box-sizing:border-box;
 --page:#e9e2d3;--ink:#2a1d12;--wood:#5a3a22;--wood2:#7a5231;--felt:#1f5c43;--felt2:#17493a;--card:#fbf7ec;--red:#b3261e;--hole:#2a1a0e;--gold:#e3b04b;--btn:#e3b04b;--btntxt:#2a1d12}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--page:#16110c;--ink:#efe6d4;--sheet:#2b2218;--sheet-ink:#efe6d4;--sheet-2:#3b2f22}}
 :root[data-theme="dark"]{--page:#16110c;--ink:#efe6d4;--sheet:#2b2218;--sheet-ink:#efe6d4;--sheet-2:#3b2f22}
@@ -67,7 +67,7 @@ button.c:focus-visible,.act:focus-visible{outline:3px solid #fff;outline-offset:
 .board svg circle[fill="#2a1a0e"]{fill:#120a04;stroke:#f3e6cf;stroke-opacity:.65;stroke-width:.7}
 .pg{filter:drop-shadow(0 1px 1.5px #000b)}
 .c{box-shadow:0 2px 5px #0005}
-button.c:not(:disabled):hover{transform:translateY(-4px)}
+@media (hover:hover){button.c:not(.sel):not(:disabled):hover{transform:translateY(-4px)}}
 button.c.sel,button.c.sel:hover{transform:translateY(-12px)}
 .c{display:block;position:relative;overflow:hidden;font-size:11px}
 .ci{position:absolute;left:3px;top:2px;font-size:12px;line-height:1;text-align:center;font-weight:700}
@@ -191,7 +191,7 @@ html[data-art="cal"] .board svg circle[fill="#2a1a0e"]{fill:#4a2c5a;stroke:none}
 html[data-art="cal"] .table{background:linear-gradient(var(--felt),var(--felt2));border:0;border-radius:30px;box-shadow:0 8px 0 var(--sh);color:#fff}
 html[data-art="cal"] .c{background:var(--card);border:0;border-radius:9px;box-shadow:0 5px 0 var(--sh);color:#4a2c5a}
 html[data-art="cal"] .c.r{color:var(--red)}
-html[data-art="cal"] button.c:not(:disabled):hover{transform:translateY(-6px)}
+@media (hover:hover){html[data-art="cal"] button.c:not(.sel):not(:disabled):hover{transform:translateY(-6px)}}
 html[data-art="cal"] .c.sel{transform:translateY(-14px);box-shadow:0 0 0 4px var(--gold),0 8px 0 var(--sh)}
 html[data-art="cal"] .c.back{background:radial-gradient(circle,var(--card) 0 12%,#0000 13%),radial-gradient(circle at 50% 50%,#0000 0 30%,#ffffff22 31% 45%,#0000 46%),var(--b1);border:6px solid var(--card)}
 html[data-art="cal"] .av{border-radius:50%;box-shadow:0 4px 0 var(--sh)}
@@ -633,6 +633,54 @@ html .cslot.mid .c{width:clamp(88px,30vw,118px)!important}html .cslot.side .c{wi
 .cgrid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px}.ctile{min-width:0;padding:8px 4px}.ctile b{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}.ctile .act.sm{padding:5px 8px;font-size:12px;max-width:100%}
 .tabs{scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}.tabb{flex:1 1 auto;min-width:0}
 @media (max-width:360px){.cpv{height:64px}.cpv .c{width:40px!important}.tsw{width:50px;height:50px}.pgp{width:38px;height:38px}}
+
+/* --- playtest pass: table clarity + iPhone fit --- */
+body{padding-bottom:max(10px,env(safe-area-inset-bottom))}
+.tut{padding:max(20px,env(safe-area-inset-top)) 20px max(20px,env(safe-area-inset-bottom))}
+.mapv{padding-bottom:env(safe-area-inset-bottom)}
+.hin{padding-bottom:max(24px,env(safe-area-inset-bottom))}
+.table .mid{margin:6px 0;align-items:flex-start}
+.table .mid>.dk,.table .mid>.cb{width:26%;flex:none;display:flex;flex-direction:column;align-items:center;gap:3px}
+.table .mid .cnt{align-self:center}
+.deck{position:relative;width:max-content;padding:0 6px 0 0}
+.deck .c{width:clamp(38px,11vw,46px)!important}
+.deck>.c.back.dkb{position:absolute;left:6px;top:4px;opacity:.95}
+.deck>.c.back.dkb:only-child{position:relative;left:0;top:0}
+.deck .st{position:relative;transform:rotate(-4deg)}
+.stt{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:#ffc857;color:#2a1a0e;padding:2px 7px;border-radius:999px;line-height:1.3}
+.deck .c,.crb .c{height:auto!important;aspect-ratio:54/78;min-height:0!important}
+.deck{margin-bottom:4px}.crb .c.back{border-width:3px!important}
+.crb{display:flex;min-height:44px;align-items:center;justify-content:center;padding-left:18px;max-width:100%}
+.crb .c{width:clamp(26px,8vw,32px)!important;margin-left:-18px;flex:none}
+.crb .emp{width:clamp(26px,8vw,32px);aspect-ratio:54/78;border:2px dashed #fff6;border-radius:6px;margin-left:-14px}
+.pile{min-height:0;padding-bottom:9px}
+.table .mid>.ctr{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:4px}
+.ctr .cnt{width:58px;height:58px;font-size:22px}.ctr .cnt small{font-size:9px}
+.ctr .pile{max-width:100%}.ctr .pile .c{margin-left:-30px}.ctr .pile.n5 .c,.ctr .pile.n6 .c{margin-left:-34px}.ctr .pile.n7 .c,.ctr .pile.n8 .c{margin-left:-38px}.ctr .pile .c:first-child{margin-left:0}
+.pile .c.pb0{box-shadow:0 6px 0 -1px #4aa3df,0 0 0 1px #0003!important}.pile .c.pb1{box-shadow:0 6px 0 -1px #e0534a,0 0 0 1px #0003!important}
+html[data-skin="pixel"] .pile .c.pb0{box-shadow:0 0 0 2px #1a1c2c,0 7px 0 0 #4aa3df,0 9px 0 0 #1a1c2c!important}html[data-skin="pixel"] .pile .c.pb1{box-shadow:0 0 0 2px #1a1c2c,0 7px 0 0 #e0534a,0 9px 0 0 #1a1c2c!important}
+.plg{display:flex;justify-content:center;gap:12px;font-size:11px;opacity:.9;margin-top:2px}.plg i{display:inline-block;width:12px;height:5px;border-radius:3px;margin-right:4px;vertical-align:middle}
+.srow{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:6px 0}
+.srow .status{margin:0}.srow .hintb{margin:0}
+.brow{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:8px}.brow .act,.brow .hintb{margin:0}
+.bon{margin-top:6px;padding:6px 10px;border-radius:10px;background:#ffc85733;border:2px solid #ffc857;font-weight:700}
+.bon.o{background:#e0534a26;border-color:#e0534a}
+.bon div{margin:1px 0}
+html[data-skin="pixel"] .stt,html[data-skin="pixel"] .bon{font-family:CribPixel,monospace;border-radius:0}
+html[data-skin="pixel"] .bon{border:3px solid #ffcd75;background:#1a1c2c99}
+html[data-skin="pixel"] .bon.o{border-color:#e0534a}
+html[data-skin="pixel"] .crb .emp{border-radius:0}
+.ovb button:disabled,#ovb button.wait{opacity:.5;pointer-events:none}
+@media (max-height:700px){.table{padding-top:6px;padding-bottom:6px;margin-top:6px}.table .log{min-height:0}.table .mid{margin:2px 0}.srow{margin:4px 0}}
+@media (max-height:620px){
+ #board>svg{width:84%!important;margin:0 auto}
+ header.top{padding-top:0;padding-bottom:0}
+ .table .c{width:clamp(40px,calc((100vw - 60px)/6 - 4px),46px)}
+ .table .hand.opp .c.back{width:32px!important}
+ .table .hand{min-height:0}
+ .ctr .cnt{width:50px;height:50px;font-size:19px}
+ .brow{margin-top:4px}
+}
 </style></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="q0" viewBox="0 0 7 7"><g fill="currentColor" shape-rendering="crispEdges"><rect x="3" y="0" width="1" height="1"/><rect x="2" y="1" width="3" height="1"/><rect x="1" y="2" width="5" height="1"/><rect x="0" y="3" width="7" height="1"/><rect x="0" y="4" width="7" height="1"/><rect x="3" y="5" width="1" height="1"/><rect x="2" y="6" width="3" height="1"/></g></symbol><symbol id="q1" viewBox="0 0 7 7"><g fill="currentColor" shape-rendering="crispEdges"><rect x="1" y="0" width="2" height="1"/><rect x="4" y="0" width="2" height="1"/><rect x="0" y="1" width="7" height="1"/><rect x="0" y="2" width="7" height="1"/><rect x="0" y="3" width="7" height="1"/><rect x="1" y="4" width="5" height="1"/><rect x="2" y="5" width="3" height="1"/><rect x="3" y="6" width="1" height="1"/></g></symbol><symbol id="q2" viewBox="0 0 7 7"><g fill="currentColor" shape-rendering="crispEdges"><rect x="3" y="0" width="1" height="1"/><rect x="2" y="1" width="3" height="1"/><rect x="1" y="2" width="5" height="1"/><rect x="0" y="3" width="7" height="1"/><rect x="1" y="4" width="5" height="1"/><rect x="2" y="5" width="3" height="1"/><rect x="3" y="6" width="1" height="1"/></g></symbol><symbol id="q3" viewBox="0 0 7 7"><g fill="currentColor" shape-rendering="crispEdges"><rect x="2" y="0" width="3" height="1"/><rect x="2" y="1" width="3" height="1"/><rect x="0" y="2" width="2" height="1"/><rect x="3" y="2" width="1" height="1"/><rect x="5" y="2" width="2" height="1"/><rect x="0" y="3" width="7" height="1"/><rect x="0" y="4" width="2" height="1"/><rect x="3" y="4" width="1" height="1"/><rect x="5" y="4" width="2" height="1"/><rect x="3" y="5" width="1" height="1"/><rect x="2" y="6" width="3" height="1"/></g></symbol><filter id="pixf" x="0" y="0" width="100%" height="100%"><feFlood x="1" y="1" width="1" height="1"/><feComposite width="2.5" height="2.5"/><feTile result="t"/><feComposite in="SourceGraphic" in2="t" operator="in"/><feMorphology operator="dilate" radius="1.25"/></filter><symbol id="s0" viewBox="0 0 10 10"><path d="M5 .3C5.5 2.5 9.4 4.2 9.4 6.6 9.4 8 8.3 8.7 7.3 8.7 6.4 8.7 5.7 8.2 5.4 7.5 5.5 8.6 5.9 9.3 6.8 9.7H3.2C4.1 9.3 4.5 8.6 4.6 7.5 4.3 8.2 3.6 8.7 2.7 8.7 1.7 8.7.6 8 .6 6.6.6 4.2 4.5 2.5 5 .3Z" fill="currentColor"/></symbol>
 <symbol id="s1" viewBox="0 0 10 10"><path d="M5 9.2C1.2 6.4.4 4.6.4 3 .4 1.5 1.5.5 2.9.5 3.8.5 4.6 1 5 1.8 5.4 1 6.2.5 7.1.5 8.5.5 9.6 1.5 9.6 3 9.6 4.6 8.8 6.4 5 9.2Z" fill="currentColor"/></symbol>
@@ -665,14 +713,14 @@ function combos(a,k){const out=[];(function f(s,cur){if(cur.length==k){out.push(
 function score(hand,st,crib){
   const all=st?hand.concat([st]):hand.slice(),items=[];let t=0;
   let f=0;for(let m=1;m<1<<all.length;m++){let s=0;all.forEach((c,i)=>{if(m>>i&1)s+=val(c)});if(s==15)f++}
-  if(f){t+=2*f;items.push(`fifteens ×${f}: ${2*f}`)}
+  if(f){t+=2*f;items.push(`fifteens ×${f}: ${2*f}`)}const F15=f;
   let p=0;for(const [a,b] of combos(all,2))if(a.r==b.r)p++;
   if(p){t+=2*p;items.push(`pairs ×${p}: ${2*p}`)}
   for(let L=all.length;L>=3;L--){let n=0;for(const cs of combos(all,L)){const r=cs.map(c=>c.r).sort((x,y)=>x-y);if(new Set(r).size==L&&r[L-1]-r[0]==L-1)n++}
     if(n){t+=n*L;items.push(`${n>1?n+' runs':'run'} of ${L}: ${n*L}`);break}}
   if(hand.length==4&&hand.every(c=>c.s==hand[0].s)){if(!crib||(st&&st.s==hand[0].s)){const x=st&&st.s==hand[0].s?5:4;t+=x;items.push(`flush: ${x}`)}}
   if(st&&hand.some(c=>c.r==11&&c.s==st.s)){t+=1;items.push('nobs: 1')}
-  return{total:t,items}
+  return{total:t,items,f:F15}
 }
 function pegScore(pile,c,count){
   const np=pile.concat([c]),n=count+val(c),notes=[];let pts=0;
@@ -710,9 +758,9 @@ function sched(){clearTimeout(T);T=setTimeout(step,850)}
 function playable(p){return G.pegHands[p].filter(c=>val(c)+G.count<=31)}
 function play(p,c){
   const r=pegScore(G.pile,c,G.count);G.pegHands[p]=G.pegHands[p].filter(x=>x!==c);
-  G.pile.push(c);G.count+=val(c);G.last=p;G.turn=1-p;snd('card');G.tip=null;G.hintC=null;G.fx='play';
+  c.pb=p;G.pile.push(c);G.count+=val(c);G.last=p;G.turn=1-p;snd('card');G.tip=null;G.hintC=null;G.fx='play';
   log(`${NM[p]} played ${LB[c.r]}${SU[c.s]}${r.pts?'':' ('+G.count+')'}`);
-  addScore(p,r.pts,r.notes.join(', '));if(r.pts&&G.phase!='over')say(p,r.notes.join(', ')+'!');bonusPeg(p,r);
+  addScore(p,r.pts,r.notes.join(', '));const bx=bonusPeg(p,r)||[];if((r.pts||bx.length)&&G.phase!='over')say(p,[r.pts?r.notes.join(', ')+'!':'',...bx].filter(Boolean).join(' '));
   if(G.count==31){G.pile=[];G.count=0}
   render();if(G.phase!='over')sched()
 }
@@ -727,7 +775,7 @@ function step(){
     if(p==0||MP){render();return}
     let b=-Infinity,pick;for(const c of pl){const s=aiPeg(c);if(s>b){b=s;pick=c}}
     return play(1,pick)}
-  if(G.count>0){log(`${NM[p]}: Go`);say(p,'Go!');snd('go')}
+  if(G.count>0&&G.pegHands[p].length){log(`${NM[p]}: Go`);say(p,'Go!');snd('go')}
   if(playable(1-p).length)G.turn=1-p;
   else{if(G.count>0)addScore(G.last,1,'go');G.pile=[];G.count=0;G.turn=1-G.last}
   render();if(G.phase!='over')sched()
@@ -736,7 +784,7 @@ function startShow(){G.phase='show';G.showI=0;showStep()}
 function showStep(){
   const i=G.showI,who=i==0?1-G.dealer:G.dealer,cards=i<2?G.kept[who]:G.crib;
   const res=score(cards,G.starter,i==2),label=i<2?`${NM[who]}${who?"'s":'r'} hand`:`${NM[who]}${who?"'s":'r'} crib`;
-  G.shown={cards,res,label,who};
+  G.shown={cards,res,label,who};G.shown.bon=bonusList(G.shown,who,i==2);
   if($('mg').checked&&who==0&&!MP){G.shown.claim=0;return render()}
   finishShow(null)
 }
@@ -877,29 +925,30 @@ function render(){
   const ph=G.phase;
   if(ph=='discard'){top=backs(4);status='Pick 2 cards for the crib';
     bot=G.hands[0].map((c,i)=>cardEl(c,'').replace('<div','<button'+(G.sel.includes(i)?' data-s="1"':'')+' data-i="'+i+'"').replace(/<\/div>$/,'</button>').replace('class="c','class="c'+(G.sel.includes(i)?' sel':''))).join('');
-    btn=`<button class="act" id="go" ${G.sel.length==2?'':'disabled'}>Send to crib</button>${HB()}`}
+    btn=`<div class="brow"><button class="act" id="go" ${G.sel.length==2?'':'disabled'}>Send to crib</button>${HB()}</div>`}
   if(ph=='peg'){top=backs(G.pegHands[1].length);
     status=G.turn==0?(playable(0).length?'Your turn: play a card':'No playable card: Go'):(MP?'Waiting for your partner…':'Computer is thinking…');
-    mid=`<div class="pile">${G.pile.map(c=>cardEl(c)).join('')}</div>`;
+    mid='';var PILE=`<div class="pile n${G.pile.length}">${G.pile.map(c=>cardEl(c).replace('class="c','class="c pb'+(c.pb?1:0))).join('')}</div>`;
     bot=G.pegHands[0].map((c,i)=>`<button class="c ${c.s==1||c.s==2?'r':''} ${c===G.hintC?'sel':''}" data-i="${i}" ${G.turn==0&&val(c)+G.count<=31?'':'disabled'}>${face(c)}</button>`).join('')}
   if(ph=='show'||ph=='over'){
     if(G.shown){top=G.shown.cards.map(c=>cardEl(c)).join('')+'<div style="width:14px"></div>'+cardEl(G.starter);
       status=`${G.shown.label}: ${G.shown.res.total} points`;
-      bot=`<div class="log" style="text-align:center">${G.shown.res.items.join('<br>')||'nothing'}</div>`;
+      const bn=G.shown.bon,bt=bn?[...bn.mine,...bn.opp].reduce((a,x)=>a+(+((x.match(/\+(\d+)$/)||[0,0])[1])),0):0;const mb=bn?bn.mine.reduce((a,x)=>a+(+((x.match(/\+(\d+)$/)||[0,0])[1])),0):0,ob=bn&&G.shown.who==1?bt:0;if(mb||ob)status+=` + ${mb||ob} bonus`;
+      bot=`<div class="log" style="text-align:center">${G.shown.res.items.join('<br>')||'nothing'}${bn&&bn.mine.length?`<div class="bon">${IC('sparkle')} Relic bonus<div>${bn.mine.join('</div><div>')}</div></div>`:''}${bn&&bn.opp.length?`<div class="bon o">${bn.opp.join('<br>')}</div>`:''}</div>`;
       if(G.shown.claim!=null){status=`${G.shown.label}: what's the count?`;bot=`<div class="st"><button class="act" id="mn">−</button><span>${G.shown.claim}</span><button class="act" id="pl">+</button></div>`}}
-    btn=G.shown&&G.shown.claim!=null?`<button class="act" id="cl">Count it</button>`:ph=='over'?`<button class="act" id="again">${RUN?'Continue':MP?'Rematch':'Play again'}</button>`:`<button class="act" id="nx">${G.showI<2?'Continue':'Next deal'}</button>`}
-  if(ph=='over'){const l=G.score[1-G.winner],sk=l<61?' Double skunk!':l<91?' Skunk!':'';status=(G.winner==0?'You win!':NM[1]+' wins.')+sk;const ck=(G.dn||0)+'|'+G.score.join();if(CFK!==ck){CFK=ck;if(G.winner==0)confetti();else loseFx();setTimeout(summary,900)}}
+    btn=G.shown&&G.shown.claim!=null?`<button class="act" id="cl">Count it</button>`:ph=='over'?(SUMK===(G.dn||0)+'|'+G.score.join()?`<button class="act" id="again">${RUN?'Continue':MP?'Rematch':'Play again'}</button>`:''):`<button class="act" id="nx">${G.showI<2?'Continue':'Next deal'}</button>`}
+  if(ph=='over'){const l=G.score[1-G.winner],sk=l<61?' Double skunk!':l<91?' Skunk!':'';status=(G.winner==0?'You win!':NM[1]+' wins.')+sk;const ck=(G.dn||0)+'|'+G.score.join();if(CFK!==ck){CFK=ck;if(G.winner==0)confetti();else loseFx();setTimeout(summary,700)}}
   if(G.tip&&(ph=='discard'||ph=='peg'))status=G.tip;
   if(MP&&ph=='discard'&&G.dd0){status='Waiting for your partner to discard…';btn=''}
   if(MP&&G.rdy&&G.rdy[0]&&(ph=='show'||ph=='over'))btn='<div class="lbl">Waiting for your partner…</div>';
   if(ph=='discard'&&has('peek'))mid=`<div class="hand" style="min-height:0">${G.crib.map(c=>cardEl(c)).join('')}</div><div class="lbl">Crystal Ball: the computer's crib discards</div>`;
   if(ph=='discard'&&has('swap')&&!G.swapped)btn+=`<button class="lnk" id="sw" style="display:block;margin:8px auto 0;color:#f3efe2" ${G.sel.length==1?'':'disabled'}>Swap selected card (once)</button>`;
-  if(ph=='peg'&&G.turn==0&&playable(0).length)btn=HB();
+  let shint='';if(ph=='peg'&&G.turn==0&&playable(0).length){btn='';shint=HB()}
   if(MP)btn+=`<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:2px 10px;margin-top:8px">${RX.map(e=>`<button class="lnk" data-x="${e}" style="color:#f3efe2;text-decoration:none;font-size:${e.length<3?20:14}px">${e}</button>`).join('')}</div>`;
-  const cnt=ph=='peg'?`<div class="cnt"><svg viewBox="0 0 64 64" class="ring31"><circle cx="32" cy="32" r="27" class="rt0"/><circle cx="32" cy="32" r="27" class="rt1" style="stroke-dasharray:${(G.count/31*169.6).toFixed(1)} 170"/></svg><span>${G.count}</span><small>of 31</small></div>`:'<div></div>';
-  $('table').innerHTML=`<div class="lbl">${(ph=='show'||ph=='over')&&G.shown?'Counting: '+G.shown.label:NM[1]+' · '+(G.dealer?'dealer':'pone')}</div><div class="hand${(ph=='show'||ph=='over')&&G.shown?'':' opp'}">${top}</div>
-  <div class="mid">${G.starter?`<div><div class="hand" style="min-height:0">${cardEl(G.starter)}</div><div class="lbl">starter</div></div>`:'<div style="width:50px"></div>'}${cnt}<div class="lbl">crib: ${G.dealer?NM[1]:'You'}</div></div>
-  ${mid}<div class="status">${status}</div><div class="hand">${bot}</div><div class="lbl">You · ${G.dealer?'pone':'dealer'}</div>${btn}<div class="log">${G.log.join('<br>')}</div>`;
+  var PILE=PILE||'';const cnt=ph=='peg'?`<div class="cnt"><svg viewBox="0 0 64 64" class="ring31"><circle cx="32" cy="32" r="27" class="rt0"/><circle cx="32" cy="32" r="27" class="rt1" style="stroke-dasharray:${(G.count/31*169.6).toFixed(1)} 170"/></svg><span>${G.count}</span><small>of 31</small></div>`:'<div></div>';
+  $('table').innerHTML=`${(ph=='show'||ph=='over')&&G.shown?'<div class="lbl">Counting: '+G.shown.label+'</div>':''}<div class="hand${(ph=='show'||ph=='over')&&G.shown?'':' opp'}">${top}</div>
+  <div class="mid"><div class="dk"><div class="deck"><div class="c back dkb"></div>${G.starter?cardEl(G.starter).replace('class="c','class="c st'):''}</div><span class="${G.starter?'stt':'lbl'}">${G.starter?'Starter':'Deck'}</span></div><div class="ctr">${cnt}${ph=='peg'?PILE:''}</div><div class="cb"><div class="crb">${(G.crib||[]).length?(G.crib||[]).map(()=>'<div class="c back"></div>').join(''):'<div class="emp"></div>'}</div><div class="lbl">${G.dealer?(MP?NM[1]+"'s crib":'Their crib'):'Your crib'}</div></div></div>
+  ${mid}<div class="srow"><div class="status">${status}</div>${shint}</div><div class="hand">${bot}</div>${btn}<div class="log">${G.log.join('<br>')}</div>`;
   const $q=s=>document.querySelector(s);
   document.querySelectorAll('button.c').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;
     if(G.phase=='discard'){const k=G.sel.indexOf(i);if(k>=0)G.sel.splice(k,1);else if(G.sel.length<2)G.sel.push(i);render()}
@@ -912,7 +961,7 @@ function render(){
   if(G.fx){const f=G.fx;G.fx=null;if(!RM()){const TB=$('table');
     if(f=='deal')TB.querySelectorAll('.hand .c').forEach((e,i)=>{e.style.animation=`dealin .35s ${i*.06}s both`});
     else if(f=='play'){const e=TB.querySelector('.pile .c:last-child');if(e)e.style.animation=`${G.last?'dropu':'dropd'} .3s both`}
-    else if(f=='cut'){const e=TB.querySelector('.mid .c');if(e)e.style.animation='flip .5s both'}}}
+    else if(f=='cut'){const e=TB.querySelector('.mid .st');if(e)e.style.animation='flip .5s both'}}}
   if(ph=='peg'&&(G.turn==0||MP)&&!playable(G.turn).length){sched()}
 }
 function say(p,t){G.bub={p,t};clearTimeout(BT);BT=setTimeout(()=>{G.bub=null;drawBoard()},2600)}
@@ -1035,7 +1084,7 @@ const OPP=[
 const RL=[
 {id:'five',ic:'🍀',n:'Lucky Fives',d:'+1 for each 5 in a hand you count'},
 {id:'nobs',ic:'🃏',n:'Nobs Hunter',d:'+3 when you score nobs'},
-{id:'fever',ic:'🔥',n:'Fifteen Fever',d:'+2 when a hand has two or more 15s'},
+{id:'fever',ic:'🔥',n:'Fifteen Fever',d:'+2 when a hand or crib you count has two or more 15s'},
 {id:'baron',ic:'👑',n:'Crib Baron',d:'+4 when you count your crib'},
 {id:'peg',ic:'⚡',n:'Quick Peg',d:'+1 on every pegging play that scores'},
 {id:'pair',ic:'💞',n:'Pair Bond',d:'+2 if a hand you count has a pair'},
@@ -1046,20 +1095,23 @@ const RL=[
 {id:'life',ic:'💚',n:'Heart',d:'+10 max HP and heal 10 now'},
 {id:'mentor',ic:'📓',n:"Mentor's Notebook",d:'Unlocks the Hint button during runs'}];RL.forEach(r=>r.ic=IC(r.id));
 const has=id=>RUN&&RUN.rel.includes(id);
-function countBonus(cards,st,res,crib){let b=0;const w=[],it=res.items;
-  if(has('five')){const n=cards.concat([st]).filter(c=>c.r==5).length;if(n){b+=n;w.push('Lucky Fives')}}
-  if(has('nobs')&&it.some(s=>s.startsWith('nobs'))){b+=3;w.push('Nobs Hunter')}
-  if(has('fever')&&it.some(s=>/^fifteens ×([2-9])/.test(s))){b+=2;w.push('Fifteen Fever')}
-  if(has('baron')&&crib){b+=4;w.push('Crib Baron')}
-  if(has('pair')&&it.some(s=>s.startsWith('pairs'))){b+=2;w.push('Pair Bond')}
-  if(has('big')&&res.total>=12){b+=3;w.push('Big Hand')}
-  return{b,w:w.join(', ')}}
+function countBonus(cards,st,res,crib){let b=0;const w=[],it=res.items,L=[];const ad=(n,t)=>{b+=n;w.push(t);L.push(t+': +'+n)};
+  if(has('five')){const n=cards.concat([st]).filter(c=>c.r==5).length;if(n){ad(n,'Lucky Fives')}}
+  if(has('nobs')&&it.some(s=>s.startsWith('nobs'))){ad(3,'Nobs Hunter')}
+  if(has('fever')&&(res.f!=null?res.f:+((it.find(s=>s.startsWith('fifteens'))||'').match(/×(\d+)/)||[0,0])[1])>=2){ad(2,'Fifteen Fever')}
+  if(has('baron')&&crib){ad(4,'Crib Baron')}
+  if(has('pair')&&it.some(s=>s.startsWith('pairs'))){ad(2,'Pair Bond')}
+  if(has('big')&&res.total>=12){ad(3,'Big Hand')}
+  return{b,w:w.join(', '),L}}
+function bonusList(s,who,crib){if(!RUN)return null;const o=OPP[RUN.lvl];
+  if(who==0){const r=countBonus(s.cards,G.starter,s.res,crib),out={mine:r.L,opp:[]};if(o.steal&&s.res.total>=4)out.opp.push(o.n+' pockets '+o.steal+' point and 1 HP');return out}
+  const L=[];if(o.hand)L.push(o.n+"'s edge: +"+o.hand);if(crib&&o.crib)L.push(o.n+"'s crib edge: +"+o.crib);return{mine:[],opp:L}}
 function bonusShow(s,who,crib){if(G.phase=='over'||!RUN)return;
   if(who==0){const r=countBonus(s.cards,G.starter,s.res,crib);if(r.b){addScore(0,r.b,r.w);say(0,'+'+r.b+' '+r.w)}const o=OPP[RUN.lvl];if(o.steal&&s.res.total>=4){addScore(1,o.steal,o.n+' pockets a point');RUN.hp-=1}}
   else{const o=OPP[RUN.lvl],b=(o.hand||0)+(crib?(o.crib||0):0);if(b)addScore(1,b,o.n+"'s edge")}}
-function bonusPeg(p,r){if(G.phase=='over'||!RUN)return;
-  if(p==0&&has('peg')&&r.pts)addScore(0,1,'Quick Peg');
-  const o=OPP[RUN.lvl];if(p==1&&o.luck&&Math.random()<o.luck)addScore(1,1,o.n+' gets lucky');if(p==1&&o.broad&&r.notes.some(s=>/pair|run|kind/.test(s)))addScore(1,o.broad,o.n+' fires a broadside')}
+function bonusPeg(p,r){if(G.phase=='over'||!RUN)return [];const out=[];
+  if(p==0&&has('peg')&&r.pts){addScore(0,1,'Quick Peg');out.push('+1 Quick Peg')}
+  const o=OPP[RUN.lvl];if(p==1&&o.luck&&Math.random()<o.luck){addScore(1,1,o.n+' gets lucky');out.push('+1 lucky!')}if(p==1&&o.broad&&r.notes.some(s=>/pair|run|kind/.test(s))){addScore(1,o.broad,o.n+' fires a broadside');out.push('+'+o.broad+' broadside!')}return out}
 function runBar(){const e=$('rb');if(!RUN){e.innerHTML='';return}const o=OPP[RUN.lvl],bt=RUN.node=='boss'?'Boss':RUN.node=='elite'?'Elite':'Battle';
   e.innerHTML=hudHTML().replace('<div class="rels">',`<div class="h2"><span class="nb t-${RUN.node}">${IC(RUN.node,'ti')}${bt}</span><b>${o.n}</b><button class="mapb" id="mapb" aria-label="View map">${IC('rogue')}Map</button></div><div class="ab">${o.ab}</div><div class="rels">`)+(RUN.f==0&&!has('mentor')?'<small class="hn">Hints are locked in runs. Look for the Mentor\'s Notebook relic.</small>':'');
   hudWire(e);$('mapb').onclick=()=>showMap(true)}
@@ -1095,7 +1147,7 @@ function resultCard(o){const won=o.won!==false&&!/over/.test(o.title);
   $('ovb').innerHTML=`<div class="vic ${won?'w':'l'}"><div class="ribbon vrib">${o.title}</div><div class="vcrown">${IC(won?'baron':'cloud')}</div><div class="vcard"><h3>${o.sub}</h3>`+
    vrow('starf','Match score',o.you+' – '+o.them)+vrow('heart','HP',(o.dm?'−'+o.dm:'0')+(o.hl?' (+'+o.hl+')':'')+' → '+Math.max(0,o.hp1)+' / '+o.max)+(o.g!=null?vrow('coin','Gold','+'+o.g+' (total '+o.gold+')'):'')+(o.gem?vrow('gem','Rewards','+'+o.gem+' gems'):'')+
    `${trk(o.R)}</div></div><button class="act" id="rc">${o.btn}</button>`;
-  $('ov').hidden=false;$('rc').onclick=o.cont}
+  $('ov').hidden=false;guardOv(900);$('rc').onclick=o.cont}
 
 function nodeInfo(d){if(d.o!=null)return{title:NL[d.t]+': '+OPP[d.o].n,sub:OPP[d.o].ab};
   return{rest:{title:'Rest',sub:'Sit by the fire and heal 40% of your max HP.'},shop:{title:'Shop',sub:'Spend gold on relics and potions.'},treasure:{title:'Treasure',sub:'Gain 5 gold and choose a relic.'}}[d.t]}
@@ -1174,9 +1226,9 @@ const mkNm=s=>String(s).replace(/\b(You|Guest)\b/g,m=>m=='You'?'Host':'You');
 function mkView(){const g=G,sw=a=>[a[1],a[0]],f=x=>x==null?x:1-x,hide=a=>a&&a.map(()=>({r:1,s:0})),w=g.shown;
   return{score:sw(g.score),pegs:sw(g.pegs),dealer:f(g.dealer),phase:g.phase,turn:f(g.turn),showI:g.showI,dn:g.dn,
     hands:[g.hands[1].slice().sort((a,b)=>a.r-b.r),hide(g.hands[0])],crib:[],pegHands:g.pegHands&&[g.pegHands[1],hide(g.pegHands[0])],
-    pile:g.pile||[],count:g.count||0,starter:g.starter,last:f(g.last),winner:f(g.winner),log:g.log.map(mkNm),
+    pile:(g.pile||[]).map(c=>({r:c.r,s:c.s,pb:1-c.pb})),count:g.count||0,starter:g.starter,last:f(g.last),winner:f(g.winner),log:g.log.map(mkNm),
     bub:g.bub&&{p:1-g.bub.p,t:mkNm(g.bub.t)},fx:g.fx,rx2:g.rx2&&{p:1-g.rx2.p,n:g.rx2.n},st:g.st&&{cnt:sw(g.st.cnt),best:sw(g.st.best)},dd0:g.dd1,dd1:g.dd0,rdy:g.rdy&&sw(g.rdy),
-    shown:w&&{cards:w.cards,res:w.res,who:f(w.who),label:(w.who==1?'Your':"Host's")+(g.showI==2?' crib':' hand')}}}
+    shown:w&&{cards:w.cards,res:w.res,who:f(w.who),bon:null,label:(w.who==1?'Your':"Host's")+(g.showI==2?' crib':' hand')}}}
 function applyView(v){if(v.phase!='over'){$('table').classList.remove('lost');CFK=FK=null}const o=G&&G.hands?G.hands[0].length:-1,s=G&&G.sel;MP.last=Date.now();G=v;G.sel=s&&o==v.hands[0].length?s:[];G.tip=null;G.hintC=null;G.swapped=true;
   if(v.bub){clearTimeout(BT);BT=setTimeout(()=>{G.bub=null;drawBoard()},2600)}render()}
 function bcast(){if(!MP||!MP.host||!MP.seated||!G.hands)return;MP.rm.emit('crib',{k:'st',v:mkView()}).catch(()=>{})}
@@ -1212,13 +1264,14 @@ async function mpGo(host,code){
   else{$('ovb').innerHTML=`<h2>Joining…</h2><p>Waiting for the host (code ${code.toUpperCase()}).</p><button class="act" id="oc">Cancel</button>`;
     const hi=()=>{if(MP&&MP.rm===rm&&!MP.got)rm.emit('crib',{k:'hi'}).catch(()=>{})};hi();MP.hb=setInterval(hi,2000);MP.last=Date.now();MP.wd=setInterval(()=>{if(MP&&!MP.host&&MP.got&&Date.now()-MP.last>9000&&$('ov').hidden)hostGone()},3000)}
   $('oc').onclick=mpStop;$('ov').hidden=false}
-let CFK;
+let CFK,SUMK;
+function guardOv(ms){const bs=[...$('ovb').querySelectorAll('button')];bs.forEach(b=>b.classList.add('wait'));setTimeout(()=>bs.forEach(b=>b.classList.remove('wait')),ms||1100)}
 function confetti(){if(RM())return;for(let i=0;i<48;i++){const e=document.createElement('i');e.className='cf';e.style.cssText=`left:${Math.random()*100}vw;background:hsl(${Math.random()*360} 80% 60%);animation-delay:${Math.random()*.6}s;animation-duration:${1.6+Math.random()*1.4}s`;document.body.appendChild(e);setTimeout(()=>e.remove(),3600)}}
-function summary(){if(G.phase!='over'||G.adv||!$('ov').hidden||!$('home').hidden)return;const w=G.winner,l=G.score[1-w],
+function summary(){const sk0=(G.dn||0)+'|'+G.score.join();if(G.phase!='over'||G.adv||SUMK===sk0)return;if(!$('home').hidden){SUMK=sk0;return}if(!$('ov').hidden||!$('spl').hidden)return setTimeout(summary,600);const w=G.winner,l=G.score[1-w],
   sk=w==0?(l<61?'Double skunk!':l<91?'Skunk!':''):(G.score[0]<61?'You were double skunked.':G.score[0]<91?'You were skunked.':'');
   const s=G.st||{cnt:[0,0],best:[0,0]},row=(a,b,c)=>`<tr><td>${a}</td><td><b>${b}</b></td><td><b>${c}</b></td></tr>`;
-  $('ovb').innerHTML=`<div class="vic ${w==0?'w':'l'}"><div class="ribbon vrib">${w==0?'You win!':NM[1]+' wins.'}</div><div class="vcrown">${IC(w==0?'baron':'cloud')}</div><div class="vcard">${sk?'<h3>'+sk+'</h3>':''}`+vrow('starf','Final score',G.score[0]+' – '+G.score[1])+vrow('quick','Counted',s.cnt[0]+' – '+s.cnt[1])+vrow('peg','Pegging and bonuses',(G.score[0]-s.cnt[0])+' – '+(G.score[1]-s.cnt[1]))+vrow('big','Best hand',s.best[0]+' – '+s.best[1])+(G.gem?vrow('gem','Rewards','+'+G.gem+' gems'):'')+`</div></div><button class="act" id="oc">${RUN?'OK':'Continue'}</button>${RUN||MP?'':'<button class="act cream" id="ohm">Home</button>'}`;
-  $('ov').hidden=false;$('oc').onclick=()=>{$('ov').hidden=true};if($('ohm'))$('ohm').onclick=titleScreen}
+  $('ovb').innerHTML=`<div class="vic ${w==0?'w':'l'}"><div class="ribbon vrib">${w==0?'You win!':NM[1]+' wins.'}</div><div class="vcrown">${IC(w==0?'baron':'cloud')}</div><div class="vcard">${sk?'<h3>'+sk+'</h3>':''}`+vrow('starf','Final score',G.score[0]+' – '+G.score[1])+vrow('quick','Counted',s.cnt[0]+' – '+s.cnt[1])+vrow('peg','Pegging and bonuses',(G.score[0]-s.cnt[0])+' – '+(G.score[1]-s.cnt[1]))+vrow('big','Best hand',s.best[0]+' – '+s.best[1])+(G.gem?vrow('gem','Rewards','+'+G.gem+' gems'):'')+`</div></div><button class="act" id="oc">${RUN?'Continue':MP?'OK':'Play again'}</button>${RUN||MP?'':'<button class="act cream" id="ohm">Home</button>'}`;
+  $('ov').hidden=false;guardOv(1500);const done=()=>{SUMK=sk0;$('ov').hidden=true};$('oc').onclick=()=>{done();if(RUN||!MP)runNext();else render()};if($('ohm'))$('ohm').onclick=()=>{done();titleScreen()}}
 const CB={crimson:['#9b1c2c','#6e1220'],navy:['#1d3a5f','#12263f'],gold:['#e3b04b','#b9822c'],emerald:['#1f6b4a','#124d34']},BW={walnut:['#7a5231','#5a3a22'],maple:['#9a6e3a','#7a5028'],ebony:['#3a3a3d','#1c1c1e'],cherry:['#8a3b2a','#5e2619']};
 function applyCu(){const r=document.documentElement,st=r.style,a=CB[S.cb],w=BW[S.bw];
   if(a){st.setProperty('--b1',a[0]);st.setProperty('--b2',a[1])}else{st.removeProperty('--b1');st.removeProperty('--b2')}
