@@ -1289,7 +1289,7 @@ async function mpGo(host,code){
   RUN=null;MP={host,rm,code,opp:host?'Guest':'Host',seated:false};setupBattle();
   rm.on('crib',m=>{if(m.isMe||!MP||MP.rm!==rm)return;const d=m.data||{};
     if(MP.host){if(d.k=='hi'){MP.guest=m.peer;if(!MP.seated){MP.seated=true;$('ov').hidden=true;newGame()}else bcast()}else if(d.k=='act'&&m.peer==MP.guest)hostAct(d)}
-    else if(d.k=='st'){if(!MP.got||$('mt'))$('ov').hidden=true;MP.got=true;applyView(d.v)}});
+    else if(d.k=='st'){if(!MP.got||$('mt')){$('ov').hidden=true;['home','map','coll','stats','shs','tut','spl'].forEach(i=>{if($(i))$(i).hidden=true})}MP.got=true;applyView(d.v)}});
   if(host){$('ovb').innerHTML=`<h2>Hosting</h2><p>Share this code with your partner:</p><div style="font-size:40px;letter-spacing:6px;text-align:center">${code.toUpperCase()}</div><p>Waiting for them to join…</p><button class="act" id="oc">Cancel</button>`;MP.hb=setInterval(bcast,2500)}
   else{$('ovb').innerHTML=`<h2>Joining…</h2><p>Waiting for the host (code ${code.toUpperCase()}).</p><button class="act" id="oc">Cancel</button>`;
     const hi=()=>{if(MP&&MP.rm===rm&&!MP.got)rm.emit('crib',{k:'hi'}).catch(()=>{})};hi();MP.hb=setInterval(hi,2000);MP.last=Date.now();MP.wd=setInterval(()=>{if(MP&&!MP.host&&MP.got&&Date.now()-MP.last>9000&&$('ov').hidden)hostGone()},3000)}
@@ -1335,5 +1335,5 @@ $('lv').value=S.lv||'normal';$('mg').checked=!!S.mg;$('sn').checked=!S.mute;$('s
 $('lv').onchange=$('mg').onchange=()=>{S.lv=$('lv').value;S.mg=$('mg').checked;saveS()};
 $('st').onclick=()=>{$('shs').hidden=true;openStats()};
 newGame();titleScreen();
-</script><script>if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).then(r=>{r.update();document.addEventListener("visibilitychange",()=>{if(!document.hidden)r.update()})}).catch(()=>{});if(navigator.serviceWorker.controller)navigator.serviceWorker.addEventListener("controllerchange",()=>{const h=document.getElementById("home");if(h&&!h.hidden&&!(typeof MP!=="undefined"&&MP))location.reload()})</script>
+</script><script>if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).then(r=>{r.update();document.addEventListener("visibilitychange",()=>{if(!document.hidden)r.update()})}).catch(()=>{});if(navigator.serviceWorker.controller)navigator.serviceWorker.addEventListener("controllerchange",()=>{const h=document.getElementById("home");const o=document.getElementById("ov");if(h&&!h.hidden&&(!o||o.hidden)&&!(typeof MP!=="undefined"&&MP))location.reload()})</script>
 </body></html>
