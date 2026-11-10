@@ -936,8 +936,8 @@ function render(){
       const bn=G.shown.bon,bt=bn?[...bn.mine,...bn.opp].reduce((a,x)=>a+(+((x.match(/\+(\d+)$/)||[0,0])[1])),0):0;const mb=bn?bn.mine.reduce((a,x)=>a+(+((x.match(/\+(\d+)$/)||[0,0])[1])),0):0,ob=bn&&G.shown.who==1?bt:0;if(mb||ob)status+=` + ${mb||ob} bonus`;
       bot=`<div class="log" style="text-align:center">${G.shown.res.items.join('<br>')||'nothing'}${bn&&bn.mine.length?`<div class="bon">${IC('sparkle')} Relic bonus<div>${bn.mine.join('</div><div>')}</div></div>`:''}${bn&&bn.opp.length?`<div class="bon o">${bn.opp.join('<br>')}</div>`:''}</div>`;
       if(G.shown.claim!=null){status=`${G.shown.label}: what's the count?`;bot=`<div class="st"><button class="act" id="mn">−</button><span>${G.shown.claim}</span><button class="act" id="pl">+</button></div>`}}
-    btn=G.shown&&G.shown.claim!=null?`<button class="act" id="cl">Count it</button>`:ph=='over'?(SUMK===(G.dn||0)+'|'+G.score.join()?`<button class="act" id="again">${RUN?'Continue':MP?'Rematch':'Play again'}</button>`:''):`<button class="act" id="nx">${G.showI<2?'Continue':'Next deal'}</button>`}
-  if(ph=='over'){const l=G.score[1-G.winner],sk=l<61?' Double skunk!':l<91?' Skunk!':'';status=(G.winner==0?'You win!':NM[1]+' wins.')+sk;const ck=(G.dn||0)+'|'+G.score.join();if(CFK!==ck){CFK=ck;if(G.winner==0)confetti();else loseFx();setTimeout(summary,700)}}
+    btn=G.shown&&G.shown.claim!=null?`<button class="act" id="cl">Count it</button>`:ph=='over'?(SUMK===(G.dn||0)+'|'+G.score.join()||(CFK===(G.dn||0)+'|'+G.score.join()&&Date.now()-OVAT>5000)?`<button class="act" id="again">${RUN?'Continue':MP?'Rematch':'Play again'}</button>`:''):`<button class="act" id="nx">${G.showI<2?'Continue':'Next deal'}</button>`}
+  if(ph=='over'){const l=G.score[1-G.winner],sk=l<61?' Double skunk!':l<91?' Skunk!':'';status=(G.winner==0?'You win!':NM[1]+' wins.')+sk;const ck=(G.dn||0)+'|'+G.score.join();if(CFK!==ck){CFK=ck;OVAT=Date.now();setTimeout(()=>{if(G.phase=='over'&&SUMK!==ck)render()},5200);if(G.winner==0)confetti();else loseFx();setTimeout(summary,700)}}
   if(G.tip&&(ph=='discard'||ph=='peg'))status=G.tip;
   if(MP&&ph=='discard'&&G.dd0){status='Waiting for your partner to discard…';btn=''}
   if(MP&&G.rdy&&G.rdy[0]&&(ph=='show'||ph=='over'))btn='<div class="lbl">Waiting for your partner…</div>';
@@ -1222,6 +1222,33 @@ function runNext(){if(MP)return mpNext();if(!RUN)return newGame();
   resultCard({...info,title:R.node=='boss'?'Boss defeated!':'Victory',sub:`You beat ${o.n}.`,btn:'Choose a relic',cont:()=>offerRelic(g)})}
 
 let MP=null;
+// ---- direct phone-to-phone play (used when the claude.ai room is not available, e.g. on GitHub Pages) ----
+const PJS=['https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js','https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js'];
+function loadPeer(){if(window.Peer)return Promise.resolve(window.Peer);return new Promise((res,rej)=>{let i=0;const tryOne=()=>{if(i>=PJS.length)return rej(new Error('Could not load the connection library. Check your internet connection and try again.'));const sc=document.createElement('script');sc.src=PJS[i++];sc.onload=()=>window.Peer?res(window.Peer):tryOne();sc.onerror=tryOne;document.head.appendChild(sc)};tryOne()})}
+async function iceList(){const L=[{urls:['stun:stun.l.google.com:19302','stun:stun1.l.google.com:19302']}];
+  try{const u=(Math.floor(Date.now()/1000)+86400)+':crib',en=new TextEncoder(),k=await crypto.subtle.importKey('raw',en.encode('openrelayprojectsecret'),{name:'HMAC',hash:'SHA-1'},false,['sign']),sg=new Uint8Array(await crypto.subtle.sign('HMAC',k,en.encode(u)));
+    L.push({urls:['turn:staticauth.openrelay.metered.ca:80','turn:staticauth.openrelay.metered.ca:443','turns:staticauth.openrelay.metered.ca:443?transport=tcp'],username:u,credential:btoa(String.fromCharCode(...sg))})}catch(e){}
+  return L}
+async function peerRoom(host,code,onNote){const Pe=await loadPeer(),cfg={config:{iceServers:await iceList()},debug:0},pid='cribbage-'+code,hs=new Set();
+  const R={p2p:true,conn:null,dead:false,
+    emit(t,d){const c=R.conn;if(c&&c.open){try{c.send(d);return Promise.resolve()}catch(e){}}return Promise.reject(new Error('not connected'))},
+    on(t,fn){hs.add(fn)},
+    leave(){R.dead=true;clearInterval(R.rt);document.removeEventListener('visibilitychange',R.vis);try{R.peer.destroy()}catch(e){}}};
+  const wire=c=>{c.on('open',()=>{if(R.dead)return;if(host||!(R.conn&&R.conn.open))R.conn=c});
+    c.on('data',d=>{if(R.dead)return;if(R.conn!==c){if(host)R.conn=c;else return}hs.forEach(f=>{try{f({isMe:false,peer:c.peer,data:d})}catch(e){}})});
+    c.on('close',()=>{if(R.conn===c)R.conn=null});c.on('error',()=>{})};
+  const dial=()=>{if(R.dead||!R.peer||R.peer.disconnected||R.peer.destroyed)return;R.pt=Date.now();try{const c=R.peer.connect(pid,{reliable:true});wire(c)}catch(e){}};
+  const heal=()=>{if(R.dead)return;const pr=R.peer;try{if(pr.disconnected&&!pr.destroyed)pr.reconnect()}catch(e){}if(!host&&!(R.conn&&R.conn.open)&&Date.now()-(R.pt||0)>2500)dial()};
+  R.vis=()=>{if(!document.hidden)heal()};document.addEventListener('visibilitychange',R.vis);
+  return new Promise((res,rej)=>{let done=false;const pr=host?new Pe(pid,cfg):new Pe(cfg);R.peer=pr;
+    const fail=e=>{if(done)return;done=true;R.leave();rej(e)};
+    pr.on('open',()=>{if(done)return;done=true;if(!host)dial();R.rt=setInterval(heal,3000);res(R)});
+    pr.on('error',e=>{if(!done)return fail(e);if(!host&&e&&e.type=='peer-unavailable'&&onNote)onNote('nohost')});
+    pr.on('disconnected',()=>{if(!R.dead)setTimeout(heal,1200)});
+    if(host)pr.on('connection',wire);
+    setTimeout(()=>fail(Object.assign(new Error('The connection service did not answer. Check your internet connection and try again.'),{type:'timeout'})),20000)})}
+const newCode=()=>Array.from({length:4},()=>'abcdefghjkmnpqrstuvwxyz'[Math.random()*23|0]).join('');
+
 const mkNm=s=>String(s).replace(/\b(You|Guest)\b/g,m=>m=='You'?'Host':'You');
 function mkView(){const g=G,sw=a=>[a[1],a[0]],f=x=>x==null?x:1-x,hide=a=>a&&a.map(()=>({r:1,s:0})),w=g.shown;
   return{score:sw(g.score),pegs:sw(g.pegs),dealer:f(g.dealer),phase:g.phase,turn:f(g.turn),showI:g.showI,dn:g.dn,
@@ -1242,29 +1269,32 @@ function hostAct(d){if(!MP||!MP.host||!G.hands)return;const find=(a,c)=>c&&a.fin
   else if(d.t=='next')hostReady(1,d.key);else if(d.t=='rx'&&RX.includes(d.e)){say(1,d.e);render()}}
 const RX=['👍','😂','😮','🎉','Nice!','Ouch','Hurry up'];
 function rx(e){if(MP.host){say(0,e);render()}else MP.rm.emit('crib',{k:'act',t:'rx',e}).catch(()=>{})}
-function hostGone(){$('ovb').innerHTML=`<h2>Host stopped responding</h2><p>They may have closed the page. You can host a new game with the same code and ask them to rejoin.</p><button class="act" id="mt" style="width:100%;margin:6px 0">Host a new game</button><button class="lnk" id="mx" style="color:inherit">Keep waiting</button>`;$('ov').hidden=false;$('mt').onclick=mpTakeover;$('mx').onclick=()=>{$('ov').hidden=true;MP.last=Date.now()}}
-function mpTakeover(){clearInterval(MP.hb);clearInterval(MP.wd);MP.host=true;MP.opp='Guest';MP.seated=false;MP.got=false;NM[1]='Guest';
+function hostGone(){$('ovb').innerHTML=`<h2>Host stopped responding</h2><p>They may have closed the page or lost signal. ${MP&&MP.rm&&MP.rm.p2p?'You can host a new game and share the new code.':'You can host a new game with the same code and ask them to rejoin.'}</p><button class="act" id="mt" style="width:100%;margin:6px 0">Host a new game</button><button class="lnk" id="mx" style="color:inherit">Keep waiting</button>`;$('ov').hidden=false;$('mt').onclick=mpTakeover;$('mx').onclick=()=>{$('ov').hidden=true;MP.last=Date.now()}}
+function mpTakeover(){if(MP&&MP.rm&&MP.rm.p2p){clearInterval(MP.hb);clearInterval(MP.wd);MP.rm.leave();MP=null;return mpGo(true,newCode())}clearInterval(MP.hb);clearInterval(MP.wd);MP.host=true;MP.opp='Guest';MP.seated=false;MP.got=false;NM[1]='Guest';
   $('ovb').innerHTML=`<h2>Hosting</h2><p>Ask your partner to tap Join and enter:</p><div style="font-size:40px;letter-spacing:6px;text-align:center">${MP.code.toUpperCase()}</div><p>Waiting for them to join…</p><button class="act" id="oc">Cancel</button>`;$('oc').onclick=mpStop;$('ov').hidden=false;MP.hb=setInterval(bcast,2500)}
 function mpStop(){if(MP){clearInterval(MP.hb);clearInterval(MP.wd);MP.rm.leave();MP=null}$('ov').hidden=true;newGame()}
 function mpMenu(){
   if(MP){$('ovb').innerHTML=`<h2>Online game</h2><p>Room code ${MP.code.toUpperCase()}. You are the ${MP.host?'host':'guest'}.</p><button class="act" id="ml">Leave game</button> <button class="lnk" id="mx" style="color:inherit">Close</button>`;$('ov').hidden=false;$('ml').onclick=mpStop;$('mx').onclick=()=>{$('ov').hidden=true};return}
-  $('ovb').innerHTML=`<h2>Play a friend</h2><p>Regular cribbage, one device each. You both need this page open on claude.ai with Contributor access.</p><button class="act" id="mh" style="width:100%;margin:6px 0">Host a game</button><div style="display:flex;gap:6px;margin:6px 0"><input id="mc" placeholder="Code" maxlength="4" style="flex:1;min-width:0;font:inherit;font-size:18px;padding:6px;border-radius:8px;border:1px solid #0004"><button class="act" id="mj" style="margin:0">Join</button></div><button class="lnk" id="mx" style="color:inherit">Close</button>`;
+  $('ovb').innerHTML=`<h2>Play a friend</h2><p>${window.claude?'Regular cribbage, one device each. You both need this page open on claude.ai with Contributor access.':'Regular cribbage, one phone each. Both of you open this page: one taps Host, the other types the code and taps Join. Needs an internet connection.'}</p><button class="act" id="mh" style="width:100%;margin:6px 0">Host a game</button><div style="display:flex;gap:6px;margin:6px 0"><input id="mc" placeholder="Code" maxlength="4" style="flex:1;min-width:0;font:inherit;font-size:18px;padding:6px;border-radius:8px;border:1px solid #0004"><button class="act" id="mj" style="margin:0">Join</button></div><button class="lnk" id="mx" style="color:inherit">Close</button>`;
   $('ov').hidden=false;$('mx').onclick=()=>{$('ov').hidden=true};
-  $('mh').onclick=()=>mpGo(true,Array.from({length:4},()=>'abcdefghjkmnpqrstuvwxyz'[Math.random()*23|0]).join(''));
+  $('mh').onclick=()=>mpGo(true,newCode());
   $('mj').onclick=()=>{const c=$('mc').value.trim().toLowerCase();if(/^[a-z0-9]{4}$/.test(c))mpGo(false,c)}}
 async function mpGo(host,code){
   let room=null;try{room=window.claude&&await claude.use('room')}catch(e){}
-  if(!room)return msg('Not available','Online play only works on the published claude.ai page, for signed-in people with access.');
-  let rm;try{rm=await room.join('crib-'+code)}catch(e){return msg('Could not join',(e&&e.message)||'Try again.')}
+  let rm;if(room){try{rm=await room.join('crib-'+code)}catch(e){return msg('Could not join',(e&&e.message)||'Try again.')}}
+  else{$('ovb').innerHTML=`<h2>Connecting…</h2><p>${host?'Setting up your game.':'Looking for game '+code.toUpperCase()+'.'}</p><button class="act" id="oc">Cancel</button>`;$('ov').hidden=false;let cx=false;$('oc').onclick=()=>{cx=true;$('ov').hidden=true};
+    try{rm=await peerRoom(host,code,n=>{if(n=='nohost'&&MP&&!MP.got&&!MP.host){const p=$('ovb').querySelector('p');if(p)p.textContent='No game with code '+code.toUpperCase()+' yet. Make sure your partner tapped Host and the code matches. Still trying…'}})}
+    catch(e){if(cx)return;if(host&&e&&e.type=='unavailable-id')return mpGo(true,newCode());return msg('Could not connect',(e&&e.message)||'Check your internet connection and try again.')}
+    if(cx){rm.leave();return}}
   RUN=null;MP={host,rm,code,opp:host?'Guest':'Host',seated:false};setupBattle();
   rm.on('crib',m=>{if(m.isMe||!MP||MP.rm!==rm)return;const d=m.data||{};
     if(MP.host){if(d.k=='hi'){MP.guest=m.peer;if(!MP.seated){MP.seated=true;$('ov').hidden=true;newGame()}else bcast()}else if(d.k=='act'&&m.peer==MP.guest)hostAct(d)}
-    else if(d.k=='st'){MP.got=true;$('ov').hidden=true;applyView(d.v)}});
+    else if(d.k=='st'){if(!MP.got||$('mt'))$('ov').hidden=true;MP.got=true;applyView(d.v)}});
   if(host){$('ovb').innerHTML=`<h2>Hosting</h2><p>Share this code with your partner:</p><div style="font-size:40px;letter-spacing:6px;text-align:center">${code.toUpperCase()}</div><p>Waiting for them to join…</p><button class="act" id="oc">Cancel</button>`;MP.hb=setInterval(bcast,2500)}
   else{$('ovb').innerHTML=`<h2>Joining…</h2><p>Waiting for the host (code ${code.toUpperCase()}).</p><button class="act" id="oc">Cancel</button>`;
     const hi=()=>{if(MP&&MP.rm===rm&&!MP.got)rm.emit('crib',{k:'hi'}).catch(()=>{})};hi();MP.hb=setInterval(hi,2000);MP.last=Date.now();MP.wd=setInterval(()=>{if(MP&&!MP.host&&MP.got&&Date.now()-MP.last>9000&&$('ov').hidden)hostGone()},3000)}
   $('oc').onclick=mpStop;$('ov').hidden=false}
-let CFK,SUMK;
+let CFK,SUMK,OVAT=0;
 function guardOv(ms){const bs=[...$('ovb').querySelectorAll('button')];bs.forEach(b=>b.classList.add('wait'));setTimeout(()=>bs.forEach(b=>b.classList.remove('wait')),ms||1100)}
 function confetti(){if(RM())return;for(let i=0;i<48;i++){const e=document.createElement('i');e.className='cf';e.style.cssText=`left:${Math.random()*100}vw;background:hsl(${Math.random()*360} 80% 60%);animation-delay:${Math.random()*.6}s;animation-duration:${1.6+Math.random()*1.4}s`;document.body.appendChild(e);setTimeout(()=>e.remove(),3600)}}
 function summary(){const sk0=(G.dn||0)+'|'+G.score.join();if(G.phase!='over'||G.adv||SUMK===sk0)return;if(!$('home').hidden){SUMK=sk0;return}if(!$('ov').hidden||!$('spl').hidden)return setTimeout(summary,600);const w=G.winner,l=G.score[1-w],
