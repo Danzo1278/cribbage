@@ -14,4 +14,4 @@ Notes
 ## Cribbage Classic
 A stripped-down copy with just regular cribbage (no Adventure mode, gems or Collection) lives in `classic/`:
 https://danzo1278.github.io/cribbage/classic/
-It keeps its own stats and settings. It is generated from the main game with `strip.py`, so fixes carry over.
+It keeps its own stats and settings. It is now maintained on its own (`classic/index.html` is edited directly); see `classic/CLAUDE.md`.
