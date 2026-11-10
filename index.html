@@ -739,7 +739,7 @@ function newGame(){if($('home'))$('home').hidden=true;CFK=FK=null;G={score:[0,0]
 function deal(){
   const d=shuffle([].concat(...[0,1,2,3].map(s=>LB.slice(1).map((_,i)=>({r:i+1,s})))));
   G.hands=[d.splice(0,6),d.splice(0,6)];G.deck=d;G.crib=[];G.sel=[];G.phase='discard';G.shown=null;G.starter=null;$('table').classList.remove('lost');
-  G.hands[0].sort((a,b)=>a.r-b.r);snd('card');G.fx='deal';G.tip=null;G.hintC=null;G.swapped=false;G.dd0=0;G.dd1=0;G.dn=(G.dn||0)+1;
+  G.hands[0].sort((a,b)=>a.r-b.r||a.s-b.s);G.hands[1].sort((a,b)=>a.r-b.r||a.s-b.s);snd('card');G.fx='deal';G.tip=null;G.hintC=null;G.swapped=false;G.dd0=0;G.dd1=0;G.dn=(G.dn||0)+1;
   // computer discards the pair that leaves its best four
   let best=-Infinity,keep;for(const k of combos(G.hands[1],4)){const s=aiKeep(k);if(s>best){best=s;keep=k}}
   if(!MP){G.crib=G.hands[1].filter(c=>!keep.includes(c));G.hands[1]=keep}
@@ -1252,7 +1252,7 @@ const newCode=()=>Array.from({length:4},()=>'abcdefghjkmnpqrstuvwxyz'[Math.rando
 const mkNm=s=>String(s).replace(/\b(You|Guest)\b/g,m=>m=='You'?'Host':'You');
 function mkView(){const g=G,sw=a=>[a[1],a[0]],f=x=>x==null?x:1-x,hide=a=>a&&a.map(()=>({r:1,s:0})),w=g.shown;
   return{score:sw(g.score),pegs:sw(g.pegs),dealer:f(g.dealer),phase:g.phase,turn:f(g.turn),showI:g.showI,dn:g.dn,
-    hands:[g.hands[1].slice().sort((a,b)=>a.r-b.r),hide(g.hands[0])],crib:[],pegHands:g.pegHands&&[g.pegHands[1],hide(g.pegHands[0])],
+    hands:[g.hands[1].slice().sort((a,b)=>a.r-b.r||a.s-b.s),hide(g.hands[0])],crib:[],pegHands:g.pegHands&&[g.pegHands[1].slice().sort((a,b)=>a.r-b.r||a.s-b.s),hide(g.pegHands[0])],
     pile:(g.pile||[]).map(c=>({r:c.r,s:c.s,pb:1-c.pb})),count:g.count||0,starter:g.starter,last:f(g.last),winner:f(g.winner),log:g.log.map(mkNm),
     bub:g.bub&&{p:1-g.bub.p,t:mkNm(g.bub.t)},fx:g.fx,rx2:g.rx2&&{p:1-g.rx2.p,n:g.rx2.n},st:g.st&&{cnt:sw(g.st.cnt),best:sw(g.st.best)},dd0:g.dd1,dd1:g.dd0,rdy:g.rdy&&sw(g.rdy),
     shown:w&&{cards:w.cards,res:w.res,who:f(w.who),bon:null,label:(w.who==1?'Your':"Host's")+(g.showI==2?' crib':' hand')}}}
