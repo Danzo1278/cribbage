@@ -1335,5 +1335,5 @@ $('lv').value=S.lv||'normal';$('mg').checked=!!S.mg;$('sn').checked=!S.mute;$('s
 $('lv').onchange=$('mg').onchange=()=>{S.lv=$('lv').value;S.mg=$('mg').checked;saveS()};
 $('st').onclick=()=>{$('shs').hidden=true;openStats()};
 newGame();titleScreen();
-</script><script>if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register("sw.js").catch(()=>{})</script>
+</script><script>if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).then(r=>{r.update();document.addEventListener("visibilitychange",()=>{if(!document.hidden)r.update()})}).catch(()=>{});if(navigator.serviceWorker.controller)navigator.serviceWorker.addEventListener("controllerchange",()=>{const h=document.getElementById("home");if(h&&!h.hidden&&!(typeof MP!=="undefined"&&MP))location.reload()})</script>
 </body></html>
