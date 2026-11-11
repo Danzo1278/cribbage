@@ -35,10 +35,12 @@ await J.evaluate(`window.__peer.emit('error',{type:'peer-unavailable'})`);await 
 await J.evaluate(`mpStop();titleScreen()`);await J.click('#t3');await J.fill('#mc',code);await J.click('#mj');
 await J.waitForTimeout(3000);
 console.log('guest home hidden:',await J.evaluate(`$('home').hidden`),'host home hidden:',await H.evaluate(`$('home').hidden`));
-{const before=await J.evaluate(`G.hands[0].map(c=>c.r+'/'+c.s).join(' ')`);const cs=await J.$$('#table .hand:not(.opp) button.c');await cs[0].click({timeout:3000});await cs[1].click({timeout:3000}).catch(async()=>{await (await J.$$('#table .hand:not(.opp) button.c'))[1].click({timeout:3000})});await J.click('#go',{timeout:3000});await J.waitForTimeout(800);console.log('guest discarded by real taps:',await H.evaluate('G.dd1'));for(let k=0;k<40&&(await J.evaluate('G.phase'))!='peg';k++){await H.evaluate(BOT);await J.waitForTimeout(150)}const after=await J.evaluate(`G.pegHands[0].map(c=>c.r+'/'+c.s).join(' ')`);const kept=before.split(' ').slice(2).join(' ');console.log('guest order before:',before,'| in pegging:',after,'| same order:',after==kept)}
+{const before=await J.evaluate(`G.hands[0].map(c=>c.r+'/'+c.s).join(' ')`);const cs=await J.$$('#table .hand:not(.opp) button.c');await cs[0].click({timeout:3000}).catch(async()=>{await (await J.$$('#table .hand:not(.opp) button.c'))[0].click({timeout:3000})});await cs[1].click({timeout:3000}).catch(async()=>{await (await J.$$('#table .hand:not(.opp) button.c'))[1].click({timeout:3000})});await J.click('#go',{timeout:3000});await J.waitForTimeout(800);console.log('guest discarded by real taps:',await H.evaluate('G.dd1'));for(let k=0;k<40&&(await J.evaluate('G.phase'))!='peg';k++){await H.evaluate(BOT);await J.waitForTimeout(150)}const after=await J.evaluate(`G.pegHands[0].map(c=>c.r+'/'+c.s).join(' ')`);const kept=before.split(' ').slice(2).join(' ');console.log('guest order before:',before,'| in pegging:',after,'| same order:',after==kept)}
 console.log('seated:',await H.evaluate(`[MP.seated,G.phase,NM[1]]`),await J.evaluate(`[MP.got,G.phase,NM[1],$('ov').hidden]`));
+await J.evaluate(`equip('av','zola');equip('peg','gold')`);await H.evaluate(`equip('av','walt')`);await J.waitForTimeout(3500);
+console.log('names/avatars:',JSON.stringify(await H.evaluate(`[NM[1],MP.oav,MP.opg,PC]`)),JSON.stringify(await J.evaluate(`[NM[1],MP.oav,PC]`)));
 let games=0,dropped=false,steps=0;const t0=Date.now();
-while(games<2&&Date.now()-t0<240000){steps++;
+while(games<2&&Date.now()-t0<420000){steps++;
  for(const p of [H,J]){await p.evaluate(BOT).catch(()=>{})}
  await H.waitForTimeout(60);
  const hs=await H.evaluate(`[G.phase,G.score.join(),G.winner]`);
@@ -51,6 +53,6 @@ const ms=await H.evaluate('G.score'),gs=await J.evaluate('G.score');console.log(
 // guest hand never visible to host: host's view of guest hand is real cards only on host side, guest view of host hand masked
 console.log('guest sees host cards masked:',await J.evaluate(`(G.hands[1]||[]).every(c=>c.r==1&&c.s==0)`));
 // host leaves -> guest watchdog
-await J.evaluate(`$('oc')&&$('oc').click()`);await J.waitForTimeout(1600);await J.evaluate(`$('oc')&&$('oc').click()`);await H.evaluate(`MP.rm.leave();clearInterval(MP.hb)`);await J.waitForTimeout(12000);console.log('guest after host gone:',(await J.evaluate(`$('ov').hidden?'(no dialog)':$('ovb').innerText`)).replace(/\n/g,' ').slice(0,120));
+await J.waitForTimeout(4000);await J.evaluate(`$('oc')&&$('oc').click()`);await J.waitForTimeout(1800);await J.evaluate(`$('oc')&&$('oc').click()`);await H.evaluate(`MP.rm.leave();clearInterval(MP.hb)`);await J.waitForTimeout(12000);console.log('guest after host gone:',(await J.evaluate(`$('ov').hidden?'(no dialog)':$('ovb').innerText`)).replace(/\n/g,' ').slice(0,120));
 await J.click('#mt');await J.waitForTimeout(800);console.log('takeover:',(await J.evaluate(`$('ovb').innerText`)).replace(/\n/g,' ').slice(0,60),await J.evaluate('MP&&MP.host&&MP.code'));
 console.log('errors',errs);await b.close();srv.kill()})()

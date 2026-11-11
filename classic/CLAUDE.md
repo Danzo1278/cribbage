@@ -12,7 +12,7 @@ It is played at https://danzo1278.github.io/cribbage/classic/ (GitHub Pages, dep
 - Quick game vs the computer (easy / normal / hard), muggins option, hints, how to play, settings, stats.
 - "Play a friend": online play, one phone each (see below).
 - Art styles: Pixel (default), Rustic, Flat pastel, Standard. Table themes all unlocked.
-- Removed from the full game: Adventure mode (map, relics, bosses, shop), gems, Collection screen. Some of that code is still in the file but unreachable (`RUN` is always `null`, `gems()` returns 0, `owns()` returns true, the `#rn` button does nothing). It can be deleted, but carefully: render code still checks `RUN`.
+- Removed from the full game: Adventure mode (map, relics, bosses, shop) and gems. The Collection screen is back, with everything unlocked. Some of that code is still in the file but unreachable (`RUN` is always `null`, `gems()` returns 0, `owns()` returns true, the `#rn` button does nothing). It can be deleted, but carefully: render code still checks `RUN`.
 
 ## File layout (`classic/`)
 - `index.html` — the whole game: one file, vanilla JS/CSS, inline SVG and base64 pixel art (~900 KB; big data constants such as `PXSC`, `PXS`, `SCN`, `PXI`, `PXBD`, `PXLOGO` and the embedded "CribPixel" font are art, not logic).
@@ -34,6 +34,18 @@ It is played at https://danzo1278.github.io/cribbage/classic/ (GitHub Pages, dep
 - Art switching: `S.art` (`pixel`, `rustic`, `cal` = Flat pastel, `''` = Standard) → `setArt()` sets `html[data-art]`/`html[data-skin]`.
 - End of game: the summary popup must be seen before "Play again" shows in the table (`SUMK`, `guardOv`, 5-second fallback via `OVAT`), so fast tapping can't skip it.
 - Cards don't use sticky hover lift on phones (hover rules are inside `@media (hover:hover)`).
+
+
+## Recent changes (Nov 2026)
+- Pacing: `sched(ms)` defaults to 1300 ms. After 31, a Go, or the last card, `G.clr` keeps the played cards on the table for 2 s before clearing (`playable()` returns nothing while `G.clr` is set). The last-card point is its own step (`G.lc`).
+- Auto-play: on your turn, if the other player can't play and every card you can play has the same rank, it is played for you (`step()`).
+- End of game: the summary waits 2.4 s and for the pegs to finish (`PQ`), and has columns with a colour marker for each player (`vhead`, `vrow2`). The table's "Play again" fallback appears after 7 s.
+- Player colours: each player's avatar has a ring in their peg colour, a colour dot next to the name, and a coloured lane along their track. The opponent's colour is never the same as yours (`applyColl`, CSS vars `--pc0`/`--pc1`).
+- Skunk (91) and double skunk (61) lines: thick gold/red bars with labels (`boardSVG`).
+- No double-tap zoom on phones (`touch-action:manipulation`).
+- Online: host = "Player 1", guest = "Player 2". Each side sends its avatar and peg colour (`sendMe`, act `me`, view fields `oav`/`opg`).
+- Collection is back (home + settings) with an Avatars tab: 19 avatars (`AVK`), including 10 new pixel ones in `PXA`. You pick yours and the computer's (`eq('av')`, `eq('cav')`). Everything is unlocked (`owns()` returns true).
+- The full game (repo root) got the same changes and also has everything unlocked.
 
 ## Online play ("Play a friend")
 - Host-authoritative. The host runs the game and broadcasts each player's view (`mkView`); the guest sends actions (`hostAct`). Messages: `hi`, `st` (state), `act`, reactions.
