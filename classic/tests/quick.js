@@ -1,6 +1,6 @@
 // Checks the menus, then plays one full game against the computer with real taps on an iPhone-sized screen.
 // Run:  node classic/tests/quick.js   (prints any page errors at the end)
-const {chromium,devices}=require('playwright');(async()=>{const b=await chromium.launch();const c=await b.newContext({...devices['iPhone 13'],deviceScaleFactor:2});const p=await c.newPage();const errs=[];p.on('pageerror',e=>errs.push(e.message));
+const {chromium,devices}=require('playwright');(async()=>{const b=await chromium.launch();const c=await b.newContext({...devices['iPhone 13'],deviceScaleFactor:2});const p=await c.newPage();await p.addInitScript('window.__nogate=1');const errs=[];p.on('pageerror',e=>errs.push(e.message));
 await p.goto('file://'+require('path').resolve(__dirname,'../index.html'));await p.waitForTimeout(600);
 console.log('home buttons:',await p.$$eval('#home button',bs=>bs.map(b=>b.id+':'+b.innerText.trim()).join(' | ')));
 await p.screenshot({path:require('path').resolve(__dirname,'home.png')});

@@ -699,6 +699,13 @@ html[data-skin="pixel"] .pile .c.pb0{box-shadow:0 0 0 2px #1a1c2c,0 7px 0 0 var(
 .avp svg,.avp{width:58px;height:58px;display:block;border-radius:10px;overflow:hidden;margin:0 auto}
 html[data-skin="pixel"] .avp,html[data-skin="pixel"] .avp svg{border-radius:0}
 .csec{grid-column:1/-1;font-weight:800;margin:6px 2px 0;text-align:left}
+
+#home .tts{display:none;margin:28px auto 0;background:#1a1c2ce6;border:3px solid #f4f4f4;border-radius:12px;color:#fff;font:inherit;font-size:20px;letter-spacing:.08em;text-transform:uppercase;padding:12px 26px;box-shadow:0 4px 0 #1a1c2c;animation:ttsb 1.4s ease-in-out infinite}
+html[data-skin="pixel"] #home .tts{border-radius:0;font-family:CribPixel,monospace}
+#home.gate .tts{display:block}#home.gate .hmid,#home.gate .htop{visibility:hidden}#home.gate{cursor:pointer}
+@keyframes ttsb{50%{opacity:.6}}
+@media (prefers-reduced-motion:reduce){#home .tts{animation:none}}
+html[data-skin="pixel"] .ico[data-px],html[data-skin="pixel"] img.ico{filter:none}
 </style></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="q0" viewBox="0 0 7 7"><g fill="currentColor" shape-rendering="crispEdges"><rect x="3" y="0" width="1" height="1"/><rect x="2" y="1" width="3" height="1"/><rect x="1" y="2" width="5" height="1"/><rect x="0" y="3" width="7" height="1"/><rect x="0" y="4" width="7" height="1"/><rect x="3" y="5" width="1" height="1"/><rect x="2" y="6" width="3" height="1"/></g></symbol><symbol id="q1" viewBox="0 0 7 7"><g fill="currentColor" shape-rendering="crispEdges"><rect x="1" y="0" width="2" height="1"/><rect x="4" y="0" width="2" height="1"/><rect x="0" y="1" width="7" height="1"/><rect x="0" y="2" width="7" height="1"/><rect x="0" y="3" width="7" height="1"/><rect x="1" y="4" width="5" height="1"/><rect x="2" y="5" width="3" height="1"/><rect x="3" y="6" width="1" height="1"/></g></symbol><symbol id="q2" viewBox="0 0 7 7"><g fill="currentColor" shape-rendering="crispEdges"><rect x="3" y="0" width="1" height="1"/><rect x="2" y="1" width="3" height="1"/><rect x="1" y="2" width="5" height="1"/><rect x="0" y="3" width="7" height="1"/><rect x="1" y="4" width="5" height="1"/><rect x="2" y="5" width="3" height="1"/><rect x="3" y="6" width="1" height="1"/></g></symbol><symbol id="q3" viewBox="0 0 7 7"><g fill="currentColor" shape-rendering="crispEdges"><rect x="2" y="0" width="3" height="1"/><rect x="2" y="1" width="3" height="1"/><rect x="0" y="2" width="2" height="1"/><rect x="3" y="2" width="1" height="1"/><rect x="5" y="2" width="2" height="1"/><rect x="0" y="3" width="7" height="1"/><rect x="0" y="4" width="2" height="1"/><rect x="3" y="4" width="1" height="1"/><rect x="5" y="4" width="2" height="1"/><rect x="3" y="5" width="1" height="1"/><rect x="2" y="6" width="3" height="1"/></g></symbol><filter id="pixf" x="0" y="0" width="100%" height="100%"><feFlood x="1" y="1" width="1" height="1"/><feComposite width="2.5" height="2.5"/><feTile result="t"/><feComposite in="SourceGraphic" in2="t" operator="in"/><feMorphology operator="dilate" radius="1.25"/></filter><symbol id="s0" viewBox="0 0 10 10"><path d="M5 .3C5.5 2.5 9.4 4.2 9.4 6.6 9.4 8 8.3 8.7 7.3 8.7 6.4 8.7 5.7 8.2 5.4 7.5 5.5 8.6 5.9 9.3 6.8 9.7H3.2C4.1 9.3 4.5 8.6 4.6 7.5 4.3 8.2 3.6 8.7 2.7 8.7 1.7 8.7.6 8 .6 6.6.6 4.2 4.5 2.5 5 .3Z" fill="currentColor"/></symbol>
 <symbol id="s1" viewBox="0 0 10 10"><path d="M5 9.2C1.2 6.4.4 4.6.4 3 .4 1.5 1.5.5 2.9.5 3.8.5 4.6 1 5 1.8 5.4 1 6.2.5 7.1.5 8.5.5 9.6 1.5 9.6 3 9.6 4.6 8.8 6.4 5 9.2Z" fill="currentColor"/></symbol>
@@ -712,7 +719,7 @@ html[data-skin="pixel"] .avp,html[data-skin="pixel"] .avp svg{border-radius:0}
 <div class="rb" id="rb"></div><div class="board" id="board"></div>
 <div class="table" id="table"></div>
 <div class="home" id="home" hidden></div><div class="mapv" id="map" hidden></div><div class="mapv collv" id="coll" hidden></div><div class="mapv collv" id="stats" hidden></div>
-<div class="tut" id="shs" hidden><div class="tb sheet"><h2>Settings</h2><small style="display:block;opacity:.6;margin:-6px 0 6px">Version 2026.11.12b</small><div class="set">
+<div class="tut" id="shs" hidden><div class="tb sheet"><h2>Settings</h2><small style="display:block;opacity:.6;margin:-6px 0 6px">Version 2026.11.12c</small><div class="set">
 <label>Computer<select id="lv"><option>easy</option><option>normal</option><option>hard</option></select></label>
 <label>Muggins<input type="checkbox" id="mg"></label>
 <label>Sound effects<input type="checkbox" id="sn" checked></label><label>Music<input type="checkbox" id="mus" checked></label><label class="volr">Music volume<input type="range" id="mvol" min="0" max="100" step="5"></label><small id="mst" style="display:block;opacity:.8;margin:-2px 0 6px">Music: starts on your first tap</small><label class="volr">Volume<input type="range" id="vol" min="0" max="100" step="5"></label><label>Card animations<input type="checkbox" id="an" checked></label>
@@ -753,7 +760,7 @@ function pegScore(pile,c,count){
 function log(s){G.log.unshift(s);G.log=G.log.slice(0,4)}
 function addScore(p,n,why){if(G.phase=='over'||!n)return;const o=G.score[p];G.score[p]=Math.min(121,o+n);G.pegs[p]=[o,G.score[p]];log(`${NM[p]} +${n}: ${why}`);snd('score',n);G.rx2={p,n};
   if(G.score[p]>=121){G.phase='over';G.winner=p;say(1,p?'Good game!':'Well played!');recordGame(p);snd(p?'lose':'win')}}
-function newGame(){if($('home'))$('home').hidden=true;CFK=FK=null;G={score:[0,0],pegs:[[0,0],[0,0]],st:{cnt:[0,0],best:[0,0]},dealer:Math.random()<.5?0:1,log:[]};setupBattle();deal();if(RUN&&RUN.sp){RUN.sp=false;showSplash()}}
+function newGame(){if($('home')&&!window.BOOT)$('home').hidden=true;CFK=FK=null;G={score:[0,0],pegs:[[0,0],[0,0]],st:{cnt:[0,0],best:[0,0]},dealer:Math.random()<.5?0:1,log:[]};setupBattle();deal();if(RUN&&RUN.sp){RUN.sp=false;showSplash()}}
 function deal(){
   const d=shuffle([].concat(...[0,1,2,3].map(s=>LB.slice(1).map((_,i)=>({r:i+1,s})))));
   G.hands=[d.splice(0,6),d.splice(0,6)];G.deck=d;G.crib=[];G.sel=[];G.phase='discard';G.shown=null;G.starter=null;$('table').classList.remove('lost');
@@ -918,12 +925,21 @@ function openStats(){const el=$('stats'),n=(S.w||0)+(S.l||0),r=(a,b,c)=>`<div cl
   el.innerHTML=`<div class="mtop"><button class="ib" id="sbk" aria-label="Back"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5 8 12l7 7"/></svg></button><div class="ribbon">${IC('trophy')}Stats</div><span style="width:44px"></span></div>
   <div class="stc">`+r('trophy','Games played',n)+r('baron','Wins',S.w||0)+r('peg','Win rate',n?Math.round((S.w||0)/n*100)+'%':'–')+r('starf','Biggest win',S.bm?'+'+S.bm:'–')+r('fever','Win streak',(S.st||0)+' (best '+Math.max(S.bst||0,S.st||0)+')')+r('big','Best hand',S.bh||0)+r('quick','Skunks given / taken',(S.sk||0)+' / '+(S.sd||0))+r('rogue','Adventures completed',S.runsWon||0)+r('battle','Most battles in a run',S.bestRun||0)+r('gem','Gems',S.gems||0)+`</div>`;
   el.hidden=false;$('sbk').onclick=()=>{el.hidden=true}}
-function titleScreen(){$('ov').hidden=true;$('map').hidden=true;$('coll').hidden=true;const h=$('home');
-  h.innerHTML=`<div class="hbg">${PXM()?sceneHTML('valley'):RUS()?SCN.valley:SCN.day}</div><div class="hin"><div class="htop"><button class="ib" id="t7" aria-label="Stats">${IC('trophy')}</button><span class="gemc">${IC('gem')}${S.gems||0}</span></div><div class="hlogo">${PXM()?PXLOGO:RUS()?MS.wlogo:MS.logo}</div><div class="ribbon hrib">First to 121 wins</div>
+const FLAT={};
+function flatSVG(root){root.querySelectorAll('svg').forEach(sv=>{const h=sv.outerHTML;if(/currentColor|<foreignObject|<animate/.test(h))return;
+  const ids=new Set([...h.matchAll(/\sid="([^"]+)"/g)].map(m=>m[1])),refs=[...h.matchAll(/(?:href="#|url\(#)([^")]+)/g)].map(m=>m[1]);if(refs.some(r=>!ids.has(r)))return;
+  const cs=getComputedStyle(sv);let w=parseFloat(cs.width),hh=parseFloat(cs.height);if(!w||!hh){const r=sv.getBoundingClientRect();w=r.width;hh=r.height}if(!w||!hh)return;
+  let src=FLAT[h];if(!src){src=FLAT[h]='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(h.includes('xmlns=')?h:h.replace('<svg','<svg xmlns="http://www.w3.org/2000/svg"'))}
+  const im=new Image();im.decoding='async';im.src=src;im.alt='';im.setAttribute('aria-hidden','true');const c=sv.getAttribute('class');if(c)im.className=c;
+  im.style.cssText=`width:${w}px;height:${hh}px;display:${cs.display=='block'?'block':'inline-block'};vertical-align:middle;flex:none`;sv.replaceWith(im)})}
+function titleScreen(first){$('ov').hidden=true;$('map').hidden=true;$('coll').hidden=true;const h=$('home');
+  h.innerHTML=`<div class="hbg">${PXM()?sceneHTML('valley'):RUS()?SCN.valley:SCN.day}</div><div class="hin"><div class="htop"><button class="ib" id="t7" aria-label="Stats">${IC('trophy')}</button></div><div class="hlogo">${PXM()?PXLOGO:RUS()?MS.wlogo:MS.logo}</div><div class="ribbon hrib">First to 121 wins</div><button class="tts" id="tts">Tap to start</button>
   <div class="hmid"><div class="hbtns"><button class="act big" id="t1">${IC('play')}Play</button>
   <button class="pill" id="t2"><span>${IC('rogue')}</span>${RUN?'Continue adventure':'Adventure'}</button><button class="pill" id="t5"><span>${IC('coll')}</span>Collection</button><button class="pill" id="t3"><span>${IC('friend')}</span>Play a friend</button><button class="pill" id="t4"><span>${IC('book')}</span>How to play</button><button class="pill" id="t6"><span>${IC('gearic')}</span>Settings</button></div></div></div>`;
-  h.hidden=false;
-  $('t1').onclick=()=>{if(MP){h.hidden=true;mpStop()}else if(RUN){$('ovb').innerHTML='<h2>Leave your adventure?</h2><p>Starting a quick game ends your current run.</p><button class="act" id="oc">Start a quick game</button><button class="act cream" id="okr">Keep my run</button>';$('ov').hidden=false;$('okr').onclick=()=>{$('ov').hidden=true};$('oc').onclick=()=>{$('ov').hidden=true;h.hidden=true;S.bestRun=Math.max(S.bestRun||0,RUN.f);saveS();RUN=null;newGame()}}else{h.hidden=true;render()}};
+  h.hidden=false;flatSVG(h);
+  h.classList.remove('gate');if(first&&S.mus!==false&&!window.__nogate){h.classList.add('gate');const go=()=>{h.classList.remove('gate');h.removeEventListener('click',go,true)};h.addEventListener('click',go,true)}
+  
+  $('t1').onclick=()=>{if(MP){h.hidden=true;mpStop()}else if(RUN){$('ovb').innerHTML='<h2>Leave your adventure?</h2><p>Starting a quick game ends your current run.</p><button class="act" id="oc">Start a quick game</button><button class="act cream" id="okr">Keep my run</button>';$('ov').hidden=false;$('okr').onclick=()=>{$('ov').hidden=true};$('oc').onclick=()=>{$('ov').hidden=true;h.hidden=true;S.bestRun=Math.max(S.bestRun||0,RUN.f);saveS();RUN=null;newGame()}}else{h.hidden=true;if(INTRO)$('board').innerHTML='';render()}};
   $('t2').onclick=()=>{h.hidden=true;if(RUN&&!MP){if(!RUN.at||RUN.cleared)showMap();else render()}else $('rn').click()};
   $('t3').onclick=mpMenu;$('t5').onclick=()=>openColl();$('t7').onclick=openStats;$('t6').onclick=()=>{$('shs').hidden=false;musShow();setTimeout(musShow,500)};
   $('t4').onclick=()=>{$('tut').hidden=false;S.seen=1;saveS()}}
@@ -981,7 +997,7 @@ function render(){
   if($q('#sw'))$q('#sw').onclick=()=>{G.hands[0][G.sel[0]]=G.deck.shift();G.hands[0].sort((a,b)=>a.r-b.r);G.sel=[];G.swapped=true;snd('card');render()};
   if($q('#go'))$q('#go').onclick=()=>{if(MP&&!MP.host){const h=G.hands[0];MP.rm.emit('crib',{k:'act',t:'disc',c:G.sel.map(i=>({r:h[i].r,s:h[i].s}))}).catch(()=>{})}else sendCrib()};if($q('#nx'))$q('#nx').onclick=mpNext;
   document.querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>rx(b.dataset.x));if($q('#again'))$q('#again').onclick=runNext;
-  if(G.fx){const f=G.fx;G.fx=null;if(!RM()){const TB=$('table');
+  if(G.fx&&$('home').hidden){const f=G.fx;G.fx=null;if(!RM()){const TB=$('table');
     if(f=='deal')TB.querySelectorAll('.hand .c').forEach((e,i)=>{e.style.animation=`dealin .35s ${i*.06}s both`});
     else if(f=='play'){const e=TB.querySelector('.pile .c:last-child');if(e)e.style.animation=`${G.last?'dropu':'dropd'} .3s both`}
     else if(f=='cut'){const e=TB.querySelector('.mid .st');if(e)e.style.animation='flip .5s both'}}}
@@ -1036,7 +1052,7 @@ function pqNext(){const j=PQ.q.shift();if(!j){PQ.busy=false;return}PQ.busy=true;
   el._an=el.animate([{transform:T(x0,y0),offset:0},{transform:T(x0+(mx-x0)*.5,y0+(my-y0)*.85),offset:.25},{transform:T(mx,my),offset:.5},{transform:T(x1+(mx-x1)*.5,y1+(my-y1)*.85),offset:.75},{transform:T(x1,y1-1.5),offset:.9},{transform:T(x1,y1),offset:1}],{duration:ms,easing:'linear'});
   el.style.transform=T(x1,y1);el._an.onfinish=fin;el._an.oncancel=fin}
 function drawBoard(){
-  if(!$('bt')){$('board').innerHTML='<div id="bt"></div>'+boardSVG();if(INTRO&&!RM()){$('board').classList.add('intro');setTimeout(()=>$('board').classList.remove('intro'),2400)}INTRO=false;
+  if(!$('bt')){$('board').innerHTML='<div id="bt"></div>'+boardSVG();if(INTRO&&!RM()&&$('home').hidden){$('board').classList.add('intro');setTimeout(()=>$('board').classList.remove('intro'),2400)}if($('home').hidden||RM())INTRO=false;
     PQ.q=[];PQ.busy=false;[0,1].forEach(p=>['b','f'].forEach((k,j)=>{const el=$('pg'+p+k);setP(el,G.pegs[p][j],p);el._g=G.pegs[p][j]}))}
   [0,1].forEach(p=>{const A=$('pg'+p+'b'),B=$('pg'+p+'f'),[nb,nf]=G.pegs[p];
     if(nb==0&&nf==0){[A,B].forEach(el=>{if(el._g!==0){el._g=0;clearInterval(el._t);PQ.q=PQ.q.filter(q=>q[0]!==el);if(el._an){el._an.cancel();el._an=null}setP(el,0,p)}});return}
@@ -1406,6 +1422,6 @@ if(!S.mig3){S.art='pixel';S.mig2=1;S.mig3=1;saveS()}if(!['pixel','rustic','cal',
 $('lv').value=S.lv||'normal';$('mg').checked=!!S.mg;$('sn').checked=!S.mute;$('sn').onchange=()=>{S.mute=!$('sn').checked;saveS();sndIcon();snd('score',2)};sndIcon();$('snb').onclick=()=>{$('sn').checked=!$('sn').checked;$('sn').onchange()};$('gear').onclick=()=>{$('shs').hidden=false};$('shc').onclick=()=>{$('shs').hidden=true};$('tb2').onclick=()=>{$('tm').click()};$('shs').onclick=e=>{if(e.target===$('shs')||(e.target.closest&&e.target.closest('#hw,#cu')))$('shs').hidden=true};
 $('lv').onchange=$('mg').onchange=()=>{S.lv=$('lv').value;S.mg=$('mg').checked;saveS()};
 $('st').onclick=()=>{$('shs').hidden=true;openStats()};
-newGame();titleScreen();
+var BOOT=1;$('home').hidden=false;newGame();BOOT=0;titleScreen(true);
 </script><script>if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).then(r=>{r.update();document.addEventListener("visibilitychange",()=>{if(!document.hidden)r.update()})}).catch(()=>{});if(navigator.serviceWorker.controller)navigator.serviceWorker.addEventListener("controllerchange",()=>{const h=document.getElementById("home");const o=document.getElementById("ov");if(h&&!h.hidden&&(!o||o.hidden)&&!(typeof MP!=="undefined"&&MP))location.reload()})</script>
 </body></html>

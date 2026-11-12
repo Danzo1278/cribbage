@@ -24,7 +24,7 @@ const BOT=`(()=>{if(!$('ov').hidden){const b=$('oc')||$('mx');if(b&&/OK|Continue
  if(G.phase=='peg'&&G.turn==0){const b=[...document.querySelectorAll('#table button.c:not(:disabled)')];if(b.length){b[0].click();return 'p'}}
  if((G.phase=='show'||G.phase=='over')){const b=$('nx')||$('again')||$('cl');if(b){b.click();return 'n'}}return 'w'})()`;
 (async()=>{const srv=spawn('python3',['-m','http.server','8765','-d',SRV],{stdio:'ignore'});await new Promise(r=>setTimeout(r,800));
-const b=await chromium.launch();const ctx=await b.newContext({...devices['iPhone 13']});await ctx.addInitScript(MOCK);
+const b=await chromium.launch();const ctx=await b.newContext({...devices['iPhone 13']});await ctx.addInitScript(MOCK);await ctx.addInitScript('window.__nogate=1');
 const H=await ctx.newPage(),J=await ctx.newPage();const errs=[];for(const [n,p] of [['host',H],['guest',J]])p.on('pageerror',e=>errs.push(n+': '+e.message));
 for(const p of [H,J]){await p.goto('http://localhost:8765/');await p.waitForTimeout(400);await p.evaluate(`S.anim=false;setArt()`)}
 await H.click('#t3');await H.waitForTimeout(150);console.log('menu text:',(await H.$eval('#ovb p',e=>e.textContent)).slice(0,80));

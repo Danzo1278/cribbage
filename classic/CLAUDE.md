@@ -46,6 +46,7 @@ It is played at https://danzo1278.github.io/cribbage/classic/ (GitHub Pages, dep
 - Online: host = "Player 1", guest = "Player 2". Each side sends its avatar and peg colour (`sendMe`, act `me`, view fields `oav`/`opg`).
 - Collection is back (home + settings) with an Avatars tab: 19 avatars (`AVK`), including 10 new pixel ones in `PXA`. You pick yours and the computer's (`eq('av')`, `eq('cav')`). Everything is unlocked (`owns()` returns true).
 - Music: a gentle loop for each art style, made with Web Audio (`MUSD`, `musStep`, `musTick`). It starts on the first tap, stops when the app is hidden, and switches style at a bar boundary. Settings has "Music" (`S.mus`) and "Music volume" (`S.mv`); the per-style levels are in `MLV`. It is not affected by the Sound effects switch.
+- Main menu: its SVG pixel art is flattened into cached `<img>`s (`flatSVG`, cache `FLAT`), which cut it from ~1,180 elements to ~27. A "Tap to start" gate on launch (`titleScreen(true)`, class `gate`) unlocks audio so the music plays on the menu; tests skip it with `window.__nogate=1`. Nothing deals or animates behind the menu (`BOOT`, `G.fx`/`INTRO` wait until Play). Pixel icons skip the `#pixf` filter.
 - The full game (repo root) got the same changes and also has everything unlocked.
 
 ## Online play ("Play a friend")
