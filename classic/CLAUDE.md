@@ -45,6 +45,7 @@ It is played at https://danzo1278.github.io/cribbage/classic/ (GitHub Pages, dep
 - No double-tap zoom on phones (`touch-action:manipulation`).
 - Online: host = "Player 1", guest = "Player 2". Each side sends its avatar and peg colour (`sendMe`, act `me`, view fields `oav`/`opg`).
 - Collection is back (home + settings) with an Avatars tab: 19 avatars (`AVK`), including 10 new pixel ones in `PXA`. You pick yours and the computer's (`eq('av')`, `eq('cav')`). Everything is unlocked (`owns()` returns true).
+- Music: a gentle loop for each art style, made with Web Audio (`MUSD`, `musStep`, `musTick`). It starts on the first tap, stops when the app is hidden, and switches style at a bar boundary. Settings has "Music" (`S.mus`) and "Music volume" (`S.mv`); the per-style levels are in `MLV`. It is not affected by the Sound effects switch.
 - The full game (repo root) got the same changes and also has everything unlocked.
 
 ## Online play ("Play a friend")
